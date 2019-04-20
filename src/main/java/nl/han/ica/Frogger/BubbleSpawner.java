@@ -15,7 +15,7 @@ public class BubbleSpawner implements IAlarmListener {
 
     private float bubblesPerSecond;
     private Random random;
-    private WaterWorld world;
+    private Frogger world;
     private Sound popSound;
 
     /** Constructor
@@ -23,7 +23,7 @@ public class BubbleSpawner implements IAlarmListener {
      * @param popSound Geluid dat moet klinken als een bel knapt
      * @param bubblesPerSecond Aantal bellen dat per seconden gemaakt moet worden
      */
-    public BubbleSpawner(WaterWorld world,Sound popSound,float bubblesPerSecond) {
+    public BubbleSpawner(Frogger world, Sound popSound, float bubblesPerSecond) {
         this.bubblesPerSecond=bubblesPerSecond;
         this.world=world;
         this.popSound=popSound;

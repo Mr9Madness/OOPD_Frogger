@@ -14,7 +14,7 @@ import nl.han.ica.Frogger.tiles.RoadTile;
 import processing.core.PApplet;
 
 @SuppressWarnings("serial")
-public class WaterWorld extends GameEngine {
+public class Frogger extends GameEngine {
 
     private Sound backgroundSound;
     private Sound bubblePopSound;
@@ -26,7 +26,7 @@ public class WaterWorld extends GameEngine {
 
 
     public static void main(String[] args) {
-        PApplet.main(new String[]{"nl.han.ica.Frogger.WaterWorld"});
+        PApplet.main(new String[]{"nl.han.ica.Frogger.Frogger"});
     }
 
     /**

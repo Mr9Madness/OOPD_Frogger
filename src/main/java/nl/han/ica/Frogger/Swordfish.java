@@ -10,13 +10,13 @@ import nl.han.ica.OOPD_Engine.Objects.SpriteObject;
  */
 public class Swordfish extends SpriteObject {
 
-    private WaterWorld world;
+    private Frogger world;
 
     /**
      * Constructor
      * @param world Referentie naar de wereld
      */
-    public Swordfish(WaterWorld world) {
+    public Swordfish(Frogger world) {
         this(new Sprite("src/main/java/nl/han/ica/Frogger/media/swordfish.png"));
         this.world=world;
     }

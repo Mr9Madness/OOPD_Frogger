@@ -14,7 +14,7 @@ import java.util.List;
 public class Bubble extends GameObject implements ICollidableWithGameObjects{
 
     private final Sound popSound;
-    private WaterWorld world;
+    private Frogger world;
     private int bubbleSize;
 
     /**
@@ -23,7 +23,7 @@ public class Bubble extends GameObject implements ICollidableWithGameObjects{
      * @param world Referentie naar de wereld
      * @param popSound Geluid dat moet klinken als de bel knapt
      */
-    public Bubble(int bubbleSize,WaterWorld world,Sound popSound) {
+    public Bubble(int bubbleSize, Frogger world, Sound popSound) {
         this.bubbleSize=bubbleSize;
         this.popSound=popSound;
         this.world=world;

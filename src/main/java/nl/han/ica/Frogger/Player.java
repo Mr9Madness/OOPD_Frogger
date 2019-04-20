@@ -17,13 +17,13 @@ import java.util.List;
 public class Player extends AnimatedSpriteObject implements ICollidableWithTiles {
 
     final int size=25;
-    private final WaterWorld world;
+    private final Frogger world;
 
     /**
      * Constructor
      * @param world Referentie naar de wereld
      */
-    public Player(WaterWorld world) {
+    public Player(Frogger world) {
         super(new Sprite("src/main/java/nl/han/ica/Frogger/media/player.png"),2);
         this.world=world;
         setCurrentFrameIndex(1);
