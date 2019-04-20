@@ -294,3 +294,5 @@ FAILURE: java.lang.NullPointerException
 FAILURE: java.lang.NullPointerException
 [2019-04-18 08:04:29.793] 
 FAILURE: java.lang.NullPointerException
+[2019-00-20 12:00:02.857] 
+FAILURE: java.lang.NullPointerException

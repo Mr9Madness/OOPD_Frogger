@@ -8,7 +8,6 @@ import nl.han.ica.OOPD_Engine.Persistence.IPersistence;
 import nl.han.ica.OOPD_Engine.Sound.Sound;
 import nl.han.ica.OOPD_Engine.Tile.TileMap;
 import nl.han.ica.OOPD_Engine.Tile.TileType;
-import nl.han.ica.OOPD_Engine.View.EdgeFollowingViewport;
 import nl.han.ica.OOPD_Engine.View.View;
 import nl.han.ica.Frogger.tiles.RoadTile;
 import processing.core.PApplet;
@@ -17,12 +16,9 @@ import processing.core.PApplet;
 public class Frogger extends GameEngine {
 
     private Sound backgroundSound;
-    private Sound bubblePopSound;
     private TextObject dashboardText;
-    private BubbleSpawner bubbleSpawner;
     private int bubblesPopped;
     private IPersistence persistence;
-    private Player player;
 
 
     public static void main(String[] args) {
@@ -39,16 +35,10 @@ public class Frogger extends GameEngine {
         int worldWidth=1204;
         int worldHeight=903;
 
-        //initializeSound();
-        //createDashboard(worldWidth, 100);
+        createDashboard(worldWidth, 100);
         initializeTileMap();
-        //initializePersistence();
-
-        //createObjects();
-        //createBubbleSpawner();
 
         createViewWithoutViewport(worldWidth, worldHeight);
-        //createViewWithViewport(worldWidth, worldHeight, 800, 800, 1.1f);
 
     }
 
@@ -63,50 +53,6 @@ public class Frogger extends GameEngine {
 
         setView(view);
         size(screenWidth, screenHeight);
-    }
-
-    /**
-     * Creeërt de view met viewport
-     * @param worldWidth Totale breedte van de wereld
-     * @param worldHeight Totale hoogte van de wereld
-     * @param screenWidth Breedte van het scherm
-     * @param screenHeight Hoogte van het scherm
-     * @param zoomFactor Factor waarmee wordt ingezoomd
-     */
-    private void createViewWithViewport(int worldWidth,int worldHeight,int screenWidth,int screenHeight,float zoomFactor) {
-        EdgeFollowingViewport viewPort = new EdgeFollowingViewport(player, (int)Math.ceil(screenWidth/zoomFactor),(int)Math.ceil(screenHeight/zoomFactor),0,0);
-        viewPort.setTolerance(50, 50, 50, 50);
-        View view = new View(viewPort, worldWidth,worldHeight);
-        setView(view);
-        size(screenWidth, screenHeight);
-        view.setBackground(loadImage("src/main/java/nl/han/ica/Frogger/media/background.jpg"));
-    }
-
-    /**
-     * Initialiseert geluid
-     */
-    private void initializeSound() {
-        backgroundSound = new Sound(this, "src/main/java/nl/han/ica/Frogger/media/Waterworld.mp3");
-        backgroundSound.loop(-1);
-        bubblePopSound = new Sound(this, "src/main/java/nl/han/ica/Frogger/media/pop.mp3");
-    }
-
-
-    /**
-     * Maakt de spelobjecten aan
-     */
-    private void createObjects() {
-        player = new Player(this);
-        addGameObject(player, 100, 100);
-        Swordfish sf=new Swordfish(this);
-        addGameObject(sf,200,200);
-    }
-
-    /**
-     * Maakt de spawner voor de bellen aan
-     */
-    public void createBubbleSpawner() {
-        bubbleSpawner=new BubbleSpawner(this,bubblePopSound,2);
     }
 
     /**
@@ -127,20 +73,20 @@ public class Frogger extends GameEngine {
      * waarde
      */
     private void initializePersistence() {
-        persistence = new FilePersistence("main/java/nl/han/ica/Frogger/media/bubblesPopped.txt");
+        persistence = new FilePersistence("main/java/nl/han/ica/Frogger/assets/bubblesPopped.txt");
         if (persistence.fileExists()) {
             bubblesPopped = Integer.parseInt(persistence.loadDataString());
             refreshDasboardText();
         }
     }
 
-    /** 
+    /**
      * Initialiseert de tilemap
      */
     private void initializeTileMap() {
         /* TILES */
         TileType[] tileType = new TileType[]{
-                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/media/sprites/road.png" ))
+                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/road.png" ))
         };
 
         int tileSize=50;
@@ -172,15 +118,5 @@ public class Frogger extends GameEngine {
      */
     private void refreshDasboardText() {
         dashboardText.setText("Bubbles popped: "+bubblesPopped);
-    }
-
-    /**
-     * Verhoogt de teller voor het aantal
-     * geknapte bellen met 1
-     */
-    public void increaseBubblesPopped() {
-        bubblesPopped++;
-        persistence.saveData(Integer.toString(bubblesPopped));
-        refreshDasboardText();
     }
 }
