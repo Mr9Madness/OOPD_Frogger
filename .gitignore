@@ -85,5 +85,6 @@ fabric.properties
 .idea/sonarlint
 
 target/
+Logger/
 
 # End of https://www.gitignore.io/api/intellij

@@ -13,12 +13,8 @@ import nl.han.ica.Frogger.tiles.RoadTile;
 import processing.core.PApplet;
 
 @SuppressWarnings("serial")
-public class Frogger extends GameEngine {
-
-    private Sound backgroundSound;
-    private TextObject dashboardText;
-    private int bubblesPopped;
-    private IPersistence persistence;
+public class Frogger extends GameEngine
+{
     private Player frog;
 
 
@@ -36,7 +32,6 @@ public class Frogger extends GameEngine {
         int worldWidth=900;
         int worldHeight=650;
 
-        createDashboard(worldWidth, 100);
         initializeTileMap();
         createObjects(worldWidth, worldHeight);
         createViewWithoutViewport(worldWidth, worldHeight);
@@ -57,31 +52,6 @@ public class Frogger extends GameEngine {
     }
 
     /**
-     * Maakt het dashboard aan
-     * @param dashboardWidth Gewenste breedte van dashboard
-     * @param dashboardHeight Gewenste hoogte van dashboard
-     */
-    private void createDashboard(int dashboardWidth,int dashboardHeight) {
-        Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
-        dashboardText=new TextObject("");
-        dashboard.addGameObject(dashboardText);
-        addDashboard(dashboard);
-    }
-
-    /**
-     * Initialiseert de opslag van de bellenteller
-     * en laadt indien mogelijk de eerder opgeslagen
-     * waarde
-     */
-    private void initializePersistence() {
-        persistence = new FilePersistence("main/java/nl/han/ica/Frogger/assets/bubblesPopped.txt");
-        if (persistence.fileExists()) {
-            bubblesPopped = Integer.parseInt(persistence.loadDataString());
-            refreshDasboardText();
-        }
-    }
-
-    /**
      * Maakt de spelobjecten aan
      */
     private void createObjects(int dashboardWidth,int dashboardHeight) {
@@ -95,11 +65,11 @@ public class Frogger extends GameEngine {
     private void initializeTileMap() {
         /* TILES */
         TileType[] tileType = new TileType[]{
-                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/safezone.png" )),
-                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/roadWithStripes.png" )),
-                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/road.png" )),
-                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/water.png" )),
-                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/road.png" ))
+                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/safezone.png" )),
+                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/roadWithStripes.png" )),
+                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/road.png" )),
+                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/water.png" )),
+                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/road.png" ))
         };
 
         int tileSize=50;
@@ -123,12 +93,5 @@ public class Frogger extends GameEngine {
 
     @Override
     public void update() {
-    }
-
-    /**
-     * Vernieuwt het dashboard
-     */
-    private void refreshDasboardText() {
-        dashboardText.setText("Bubbles popped: "+bubblesPopped);
     }
 }

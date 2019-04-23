@@ -17,7 +17,7 @@ import java.util.List;
 public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 {
 
-    final int size=50;
+    private final int size = 50;
     private final Frogger frog;
 
     /**
@@ -25,27 +25,27 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
      * @param _frog Referentie naar de wereld
      */
     public Player(Frogger _frog) {
-        super(new Sprite("src/main/java/nl/han/ica/Frogger/assets/sprites/littleFrogger.png"),2);
+        super(new Sprite("src/main/assets/sprites/frogger.png"), 1);
         this.frog =_frog;
-        setCurrentFrameIndex(1);
-        setFriction(0.25f);
+        setCurrentFrameIndex(0);
+        setFriction(.5f);
     }
 
     @Override
     public void update() {
-        if (getX()<=0) {
+        if (getX() <= 0) {
             setxSpeed(0);
             setX(0);
         }
-        if (getY()<=0) {
+        if (getY() <= 0) {
             setySpeed(0);
             setY(0);
         }
-        if (getX()>= frog.getWidth()-size) {
+        if (getX() >= frog.getWidth() - size) {
             setxSpeed(0);
             setX(frog.getWidth() - size);
         }
-        if (getY()>= frog.getHeight()-size) {
+        if (getY() >= frog.getHeight() - size) {
             setySpeed(0);
             setY(frog.getHeight() - size);
         }
@@ -53,7 +53,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     }
     @Override
     public void keyPressed(int keyCode, char key) {
-        final int speed = 5;
+        final int speed = 50;
         if (keyCode == frog.LEFT) {
             setDirectionSpeed(270, speed);
             setCurrentFrameIndex(0);
@@ -63,7 +63,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         }
         if (keyCode == frog.RIGHT) {
             setDirectionSpeed(90, speed);
-            setCurrentFrameIndex(1);
+            setCurrentFrameIndex(0);
         }
         if (keyCode == frog.DOWN) {
             setDirectionSpeed(180, speed);
@@ -77,7 +77,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
         for (CollidedTile ct : collidedTiles) {
             if (ct.theTile instanceof BoardsTile) {
-                if (ct.collisionSide == ct.TOP) {
+                if (ct.collisionSide == CollidedTile.TOP) {
                     try {
                         vector = frog.getTileMap().getTilePixelLocation(ct.theTile);
                         setY(vector.y - getHeight());
@@ -85,14 +85,31 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                         e.printStackTrace();
                     }
                 }
-                if (ct.collisionSide == ct.RIGHT) {
+                if (ct.collisionSide == CollidedTile.RIGHT) {
                     try {
                         vector = frog.getTileMap().getTilePixelLocation(ct.theTile);
-                        frog.getTileMap().setTile((int) vector.x / 50, (int) vector.y / 50, -1);
+                        setX(vector.x + getWidth());
                     } catch (TileNotFoundException e) {
                         e.printStackTrace();
                     }
                 }
+                if (ct.collisionSide == CollidedTile.LEFT) {
+                    try {
+                        vector = frog.getTileMap().getTilePixelLocation(ct.theTile);
+                        setX(vector.x - getWidth());
+                    } catch (TileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (ct.collisionSide == CollidedTile.BOTTOM) {
+                    try {
+                        vector = frog.getTileMap().getTilePixelLocation(ct.theTile);
+                        setY(vector.y + getHeight());
+                    } catch (TileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+
             }
         }
     }
