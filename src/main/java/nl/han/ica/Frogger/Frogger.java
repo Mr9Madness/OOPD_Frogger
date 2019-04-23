@@ -19,6 +19,7 @@ public class Frogger extends GameEngine {
     private TextObject dashboardText;
     private int bubblesPopped;
     private IPersistence persistence;
+    private Player frog;
 
 
     public static void main(String[] args) {
@@ -32,12 +33,12 @@ public class Frogger extends GameEngine {
     @Override
     public void setupGame() {
 
-        int worldWidth=1204;
-        int worldHeight=903;
+        int worldWidth=900;
+        int worldHeight=650;
 
         createDashboard(worldWidth, 100);
         initializeTileMap();
-
+        createObjects(worldWidth, worldHeight);
         createViewWithoutViewport(worldWidth, worldHeight);
 
     }
@@ -81,30 +82,41 @@ public class Frogger extends GameEngine {
     }
 
     /**
+     * Maakt de spelobjecten aan
+     */
+    private void createObjects(int dashboardWidth,int dashboardHeight) {
+        frog = new Player(this);
+        addGameObject(frog, dashboardWidth/2, dashboardHeight);
+    }
+
+    /**
      * Initialiseert de tilemap
      */
     private void initializeTileMap() {
         /* TILES */
         TileType[] tileType = new TileType[]{
+                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/safezone.png" )),
+                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/roadWithStripes.png" )),
+                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/road.png" )),
+                new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/water.png" )),
                 new TileType<>(RoadTile.class, new Sprite( "src/main/java/nl/han/ica/Frogger/assets/sprites/road.png" ))
         };
 
         int tileSize=50;
         int[][] tileMapData = {
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1, 0,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+                {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+                {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
+                {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
+                {3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+                {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
+                {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
         tileMap = new TileMap(tileSize, tileType, tileMapData);
     }
