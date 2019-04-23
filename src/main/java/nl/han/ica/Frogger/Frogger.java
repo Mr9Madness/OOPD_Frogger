@@ -16,6 +16,7 @@ import processing.core.PApplet;
 public class Frogger extends GameEngine
 {
     private Player frog;
+    private Map map = new Map(this);
 
 
     public static void main(String[] args) {
