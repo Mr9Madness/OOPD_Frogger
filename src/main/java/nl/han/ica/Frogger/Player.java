@@ -45,11 +45,10 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             setxSpeed(0);
             setX(frog.getWidth() - size);
         }
-        if (getY() >= frog.getHeight() - size) {
+        if (getY() >= frog.getView().getWorldHeight() - size) {
             setySpeed(0);
-            setY(frog.getHeight() - size);
+            setY(frog.getView().getWorldHeight() - size);
         }
-
     }
     @Override
     public void keyPressed(int keyCode, char key) {

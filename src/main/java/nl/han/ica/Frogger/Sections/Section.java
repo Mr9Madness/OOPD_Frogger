@@ -10,15 +10,33 @@ public class Section {
 
     protected GameEngine engine;
 
-    Section( GameEngine engine)
+    protected int[][] tileSection = {
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+    };
+
+    protected Section(GameEngine engine)
     {
         this.engine = engine;
     }
-    Section(GameEngine engine, PVector pos, PVector size)
+    public Section(GameEngine engine, PVector pos, PVector size)
     {
         this.engine = engine;
         this.pos = pos;
         this.size = size;
+
+        engine.getTileMap().setTileMap( appendTileMap( tileSection ) );
+    }
+
+    protected int[][] appendTileMap( int[][] appendingSection )
+    {
+        int[][] tilemap = engine.getTileMap().getTileMap();
+        int[][] newTileMap = new int[ tilemap.length + appendingSection.length ][24];
+        for(int i = 0; i <= newTileMap.length; i++)
+        {
+            if( i < appendingSection.length ) newTileMap[i] = appendingSection[i];
+            else if( i - appendingSection.length < tilemap.length ) newTileMap[i] = tilemap[i - appendingSection.length];
+        }
+        return newTileMap;
     }
 
     public PVector getSize() {
