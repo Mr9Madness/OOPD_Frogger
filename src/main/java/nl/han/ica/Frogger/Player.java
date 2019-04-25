@@ -57,14 +57,14 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             setDirectionSpeed(270, speed);
             setCurrentFrameIndex(0);
         }
-        if (keyCode == frog.UP) {
+        else if (keyCode == frog.UP) {
             setDirectionSpeed(0, speed);
         }
-        if (keyCode == frog.RIGHT) {
+        else if (keyCode == frog.RIGHT) {
             setDirectionSpeed(90, speed);
             setCurrentFrameIndex(0);
         }
-        if (keyCode == frog.DOWN) {
+        else if (keyCode == frog.DOWN) {
             setDirectionSpeed(180, speed);
         }
     }
