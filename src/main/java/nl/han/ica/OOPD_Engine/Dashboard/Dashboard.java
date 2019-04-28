@@ -39,8 +39,7 @@ public class Dashboard extends GameObject {
 	/**
 	 * Draws all the GameObjects inside the Dashboard on the given canvas.
 	 *
-	 * @param g
-	 *            PGraphics object will be given by the GameEngine.
+	 * @param g PGraphics object will be given by the GameEngine.
 	 */
 	@Override
 	public void draw(PGraphics g) {

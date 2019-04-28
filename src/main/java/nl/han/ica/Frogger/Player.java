@@ -1,9 +1,8 @@
 package nl.han.ica.Frogger;
 
-import nl.han.ica.Frogger.tiles.BoardsTile;
+import nl.han.ica.Frogger.tiles.FinishTile;
 import nl.han.ica.OOPD_Engine.Collision.CollidedTile;
 import nl.han.ica.OOPD_Engine.Collision.ICollidableWithTiles;
-import nl.han.ica.OOPD_Engine.Exceptions.TileNotFoundException;
 import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 import processing.core.PVector;
@@ -24,15 +23,17 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
      * Constructor
      * @param _frog Referentie naar de wereld
      */
-    public Player(Frogger _frog) {
+    public Player(Frogger _frog)
+    {
         super(new Sprite("src/main/assets/sprites/frogger.png"), 1);
-        this.frog =_frog;
+        this.frog = _frog;
         setCurrentFrameIndex(0);
         setFriction(.5f);
     }
 
     @Override
-    public void update() {
+    public void update()
+    {
         if (getX() <= 0) {
             setxSpeed(0);
             setX(0);
@@ -50,66 +51,42 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             setY(frog.getView().getWorldHeight() - size);
         }
     }
+
     @Override
     public void keyPressed(int keyCode, char key) {
         final int speed = 50;
-        if (keyCode == frog.LEFT) {
+        if (keyCode == frog.LEFT)
+        {
             setDirectionSpeed(270, speed);
             setCurrentFrameIndex(0);
         }
-        else if (keyCode == frog.UP) {
+        else if (keyCode == frog.UP)
+        {
             setDirectionSpeed(0, speed);
         }
-        else if (keyCode == frog.RIGHT) {
+        else if (keyCode == frog.RIGHT)
+        {
             setDirectionSpeed(90, speed);
             setCurrentFrameIndex(0);
         }
-        else if (keyCode == frog.DOWN) {
+        else if (keyCode == frog.DOWN)
+        {
             setDirectionSpeed(180, speed);
         }
     }
-
 
     @Override
     public void tileCollisionOccurred(List<CollidedTile> collidedTiles)  {
         PVector vector;
 
-        for (CollidedTile ct : collidedTiles) {
-            if (ct.theTile instanceof BoardsTile) {
-                if (ct.collisionSide == CollidedTile.TOP) {
-                    try {
-                        vector = frog.getTileMap().getTilePixelLocation(ct.theTile);
-                        setY(vector.y - getHeight());
-                    } catch (TileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (ct.collisionSide == CollidedTile.RIGHT) {
-                    try {
-                        vector = frog.getTileMap().getTilePixelLocation(ct.theTile);
-                        setX(vector.x + getWidth());
-                    } catch (TileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (ct.collisionSide == CollidedTile.LEFT) {
-                    try {
-                        vector = frog.getTileMap().getTilePixelLocation(ct.theTile);
-                        setX(vector.x - getWidth());
-                    } catch (TileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (ct.collisionSide == CollidedTile.BOTTOM) {
-                    try {
-                        vector = frog.getTileMap().getTilePixelLocation(ct.theTile);
-                        setY(vector.y + getHeight());
-                    } catch (TileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }
+        for (CollidedTile ct : collidedTiles)
+        {
+            // Kijkt alleen naar een finish tile en als die in (inside) de tile is word de finish method uitgevoerd
+            if (ct.theTile instanceof FinishTile)
+                if (ct.collisionSide == CollidedTile.INSIDE)
+                    ((FinishTile)ct.theTile).Finish();
 
-            }
+            //else if( ct.theTile instanceof  )
         }
     }
 }

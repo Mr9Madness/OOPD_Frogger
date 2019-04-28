@@ -1,4 +1,4 @@
-package nl.han.ica.Frogger.Sections;
+package nl.han.ica.Frogger.sections;
 
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 

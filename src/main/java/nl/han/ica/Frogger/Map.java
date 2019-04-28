@@ -1,15 +1,12 @@
 package nl.han.ica.Frogger;
 
-import nl.han.ica.Frogger.Sections.BallSection;
-import nl.han.ica.Frogger.Sections.RiverSection;
-import nl.han.ica.Frogger.Sections.RoadSection;
-import nl.han.ica.Frogger.Sections.Section;
+import nl.han.ica.Frogger.sections.*;
+import nl.han.ica.Frogger.tiles.FinishTile;
 import nl.han.ica.Frogger.tiles.RoadTile;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 import nl.han.ica.OOPD_Engine.Tile.TileMap;
 import nl.han.ica.OOPD_Engine.Tile.TileType;
-import processing.core.PVector;
 
 import java.util.ArrayList;
 
@@ -21,31 +18,35 @@ public class Map {
         engine.setTileMap( initTileMap() );
 
         SectionList = new ArrayList<>();
-        SectionList.add(new RoadSection(engine));
-        SectionList.add(new Section(engine, new PVector(2, 4), new PVector(0,0)));
-        SectionList.add(new RiverSection(engine));
-        SectionList.add(new Section(engine, new PVector(2, 4), new PVector(0,0)));
-        SectionList.add(new RoadSection(engine));
-        SectionList.add(new Section(engine, new PVector(2, 4), new PVector(0,0)));
-        SectionList.add(new BallSection(engine));
+        AddSection(new RoadSection(engine));
+        AddSection(new RiverSection(engine));
+        AddSection(new RoadSection(engine));
+        AddSection(new BallSection(engine));
+
+
+        AddSection(new FinishSection(engine));
 
         engine.getView().setWorldSize(engine.getWidth(), engine.getTileMap().getMapHeight());
     }
 
-    /**
-     * Initialiseert de tilemap
-     */
-    private TileMap initTileMap() {
-        /* TILES */
-        TileType[] tileType = new TileType[]{
+    public void AddSection( Section section )
+    {
+        SectionList.add( section );
+    }
+
+    /** Initialiseert de tilemap */
+    private TileMap initTileMap()
+    {
+        TileType[] tileType = {
                 new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/safezone.png" )),
                 new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/roadWithStripes.png" )),
                 new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/road.png" )),
                 new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/water.png" )),
-                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/road.png" ))
+                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/road.png" )),
+                new TileType<>(FinishTile.class, new Sprite( "src/main/assets/sprites/safezone.png" ))
         };
 
-        int tileSize=50;
+        int tileSize = 50;
         int[][] tileMapData = {
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},

@@ -1,4 +1,4 @@
-package nl.han.ica.Frogger.Sections;
+package nl.han.ica.Frogger.sections;
 
 import nl.han.ica.Frogger.Vector;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
@@ -14,23 +14,25 @@ public class Section {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     };
 
-    protected Section(GameEngine engine)
+    public Section(GameEngine engine)
     {
         this.engine = engine;
+
+        engine.getTileMap().setTileMap( appendTileMap( tileSection ) );
     }
     public Section(GameEngine engine, PVector pos, PVector size)
     {
-        this.engine = engine;
+        this(engine);
+
         this.pos = pos;
         this.size = size;
-
-        engine.getTileMap().setTileMap( appendTileMap( tileSection ) );
     }
 
     protected int[][] appendTileMap( int[][] appendingSection )
     {
         int[][] tilemap = engine.getTileMap().getTileMap();
-        int[][] newTileMap = new int[ tilemap.length + appendingSection.length ][24];
+
+        int[][] newTileMap = new int[ tilemap.length + appendingSection.length ][engine.getView().getWorldWidth() / 50];
         for(int i = 0; i <= newTileMap.length; i++)
         {
             if( i < appendingSection.length ) newTileMap[i] = appendingSection[i];
