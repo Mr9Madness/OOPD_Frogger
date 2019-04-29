@@ -32,8 +32,8 @@ public class Frogger extends GameEngine
 
     /**
      * Creeërt de view zonder viewport
-     * @param screenWidth Breedte van het scherm
-     * @param screenHeight Hoogte van het scherm
+     * @param worldWidth Breedte van het scherm
+     * @param worldHeight Hoogte van het scherm
      */
     private void initView(int worldWidth, int worldHeight)
     {
