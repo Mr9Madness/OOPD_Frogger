@@ -35,21 +35,21 @@ public class Frogger extends GameEngine
      * @param screenWidth Breedte van het scherm
      * @param screenHeight Hoogte van het scherm
      */
-    private void initView(int screenWidth, int screenHeight)
+    private void initView(int worldWidth, int worldHeight)
     {
-        CenterFollowingViewport viewPort = new CenterFollowingViewport(frog, screenWidth, screenHeight,0,0);
+        CenterFollowingViewport viewPort = new CenterFollowingViewport(frog, worldWidth, worldHeight,0,0);
         viewPort.setTolerance(50, 50, 50, 50);
         View view = new View(viewPort, 950, 750);
         view.setBackground(0,0,0);
         setView(view);
-        size(screenWidth, screenHeight);
+        size(worldWidth, worldHeight);
     }
 
     /** Maakt de spelobjecten aan */
-    private void createObjects(int dashboardWidth,int dashboardHeight)
+    private void createObjects(int worldWidth, int worldHeight)
     {
         frog = new Player(this);
-        addGameObject(frog, dashboardWidth/2, dashboardHeight);
+        addGameObject(frog, worldWidth/2, worldHeight*100000);
     }
 
     @Override

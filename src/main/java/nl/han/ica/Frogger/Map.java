@@ -3,6 +3,8 @@ package nl.han.ica.Frogger;
 import nl.han.ica.Frogger.sections.*;
 import nl.han.ica.Frogger.tiles.FinishTile;
 import nl.han.ica.Frogger.tiles.RoadTile;
+import nl.han.ica.Frogger.tiles.SafeTile;
+import nl.han.ica.Frogger.tiles.WaterTile;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 import nl.han.ica.OOPD_Engine.Tile.TileMap;
@@ -38,10 +40,10 @@ public class Map {
     private TileMap initTileMap()
     {
         TileType[] tileType = {
-                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/safezone.png" )),
+                new TileType<>(SafeTile.class, new Sprite( "src/main/assets/sprites/safezone.png" )),
                 new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/roadWithStripes.png" )),
                 new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/road.png" )),
-                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/water.png" )),
+                new TileType<>(WaterTile.class, new Sprite( "src/main/assets/sprites/water.png" )),
                 new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/road.png" )),
                 new TileType<>(FinishTile.class, new Sprite( "src/main/assets/sprites/safezone.png" ))
         };
