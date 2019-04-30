@@ -20,6 +20,8 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     private final int size = 50;
     private final Frogger frog;
 
+    private int lives = 5;
+
     /**
      * Constructor
      * @param _frog Referentie naar de wereld
@@ -90,7 +92,9 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             }
             else if( ct.theTile instanceof WaterTile)
             {
-                System.out.println("GET OUT, WATER!!!");
+                lives--;
+                System.out.println("GET OUT, WATER!!!. you have" + lives + " frogs now!");
+                setY(100000);
             }
         }
     }

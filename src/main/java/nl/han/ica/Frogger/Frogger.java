@@ -49,7 +49,7 @@ public class Frogger extends GameEngine
     private void createObjects(int worldWidth, int worldHeight)
     {
         frog = new Player(this);
-        addGameObject(frog, worldWidth/2, worldHeight*100000);
+        addGameObject(frog, worldWidth/2, 100000);
     }
 
     @Override
