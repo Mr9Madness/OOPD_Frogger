@@ -10,6 +10,7 @@ public class Frogger extends GameEngine
 {
     private Player frog;
     private Map map;
+    private MenuManager menuManager;
 
     public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.Frogger.Frogger"});
@@ -28,6 +29,8 @@ public class Frogger extends GameEngine
         initView(worldWidth, worldHeight);
 
         map = new Map(this);
+        menuManager = new MenuManager();
+        addDashboard(menuManager);
     }
 
     /**

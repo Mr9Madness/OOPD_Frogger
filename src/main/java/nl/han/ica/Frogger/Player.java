@@ -80,15 +80,13 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
     @Override
     public void tileCollisionOccurred(List<CollidedTile> collidedTiles)  {
-        PVector vector;
 
         for (CollidedTile ct : collidedTiles)
         {
             // Kijkt alleen naar een finish tile en als die in (inside) de tile is word de finish method uitgevoerd
             if (ct.theTile instanceof FinishTile)
             {
-                if (ct.collisionSide == CollidedTile.INSIDE)
-                    ((FinishTile) ct.theTile).Finish();
+                ((FinishTile) ct.theTile).Finish();
             }
             else if( ct.theTile instanceof WaterTile)
             {
