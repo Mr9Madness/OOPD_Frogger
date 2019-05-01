@@ -1,6 +1,7 @@
 package nl.han.ica.Frogger;
 
 import nl.han.ica.Frogger.tiles.FinishTile;
+import nl.han.ica.Frogger.tiles.WaterTile;
 import nl.han.ica.OOPD_Engine.Collision.CollidedTile;
 import nl.han.ica.OOPD_Engine.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
@@ -18,6 +19,8 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
     private final int size = 50;
     private final Frogger frog;
+
+    private int lives = 5;
 
     /**
      * Constructor
@@ -83,10 +86,16 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         {
             // Kijkt alleen naar een finish tile en als die in (inside) de tile is word de finish method uitgevoerd
             if (ct.theTile instanceof FinishTile)
+            {
                 if (ct.collisionSide == CollidedTile.INSIDE)
-                    ((FinishTile)ct.theTile).Finish();
-
-            //else if( ct.theTile instanceof  )
+                    ((FinishTile) ct.theTile).Finish();
+            }
+            else if( ct.theTile instanceof WaterTile)
+            {
+                lives--;
+                System.out.println("GET OUT, WATER!!!. you have" + lives + " frogs now!");
+                setY(100000);
+            }
         }
     }
 }
