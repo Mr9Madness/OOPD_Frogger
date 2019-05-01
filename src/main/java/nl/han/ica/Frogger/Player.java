@@ -1,6 +1,7 @@
 package nl.han.ica.Frogger;
 
 import nl.han.ica.Frogger.tiles.FinishTile;
+import nl.han.ica.Frogger.tiles.SafeFinishTile;
 import nl.han.ica.Frogger.tiles.WaterTile;
 import nl.han.ica.OOPD_Engine.Collision.CollidedTile;
 import nl.han.ica.OOPD_Engine.Collision.ICollidableWithTiles;
@@ -92,7 +93,13 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             {
                 lives--;
                 System.out.println("GET OUT, WATER!!!. you have" + lives + " frogs now!");
-                setY(100000);
+                //setY(100000);
+            }
+            else if( ct.theTile instanceof FinishTile)
+            {
+                //lives--;
+                System.out.println("GET OUT, PRIKKELS!!!.");
+                setY(Y - 50);
             }
         }
     }
