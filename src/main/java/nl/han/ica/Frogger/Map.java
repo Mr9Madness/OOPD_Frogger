@@ -40,12 +40,13 @@ public class Map {
     private TileMap initTileMap()
     {
         TileType[] tileType = {
-                new TileType<>(SafeTile.class, new Sprite( "src/main/assets/sprites/safezone.png" )),
-                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/roadWithStripes.png" )),
-                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/road.png" )),
-                new TileType<>(WaterTile.class, new Sprite( "src/main/assets/sprites/water.png" )),
-                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/road.png" )),
-                new TileType<>(FinishTile.class, new Sprite( "src/main/assets/sprites/safezone.png" ))
+                new TileType<>(SafeTile.class, new Sprite( "src/main/assets/sprites/Safezone.png" )),
+                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/RoadWithStripes.png" )),
+                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/Road.png" )),
+                new TileType<>(WaterTile.class, new Sprite( "src/main/assets/sprites/Water.png" )),
+                new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/Road.png" )),
+                new TileType<>(FinishTile.class, new Sprite( "src/main/assets/sprites/Finisch.png" )),
+                new TileType<>(FinishTile.class, new Sprite( "src/main/assets/sprites/SafeFinisch.png" ))
         };
 
         int tileSize = 50;

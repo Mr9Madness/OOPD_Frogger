@@ -28,7 +28,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
      */
     public Player(Frogger _frog)
     {
-        super(new Sprite("src/main/assets/sprites/frogger.png"), 1);
+        super(new Sprite("src/main/assets/sprites/Frogger.png"), 1);
         this.frog = _frog;
         setCurrentFrameIndex(0);
         setFriction(.5f);

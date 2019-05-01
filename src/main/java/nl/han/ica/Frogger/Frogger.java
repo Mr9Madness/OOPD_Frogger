@@ -23,13 +23,13 @@ public class Frogger extends GameEngine
     public void setupGame()
     {
         int worldWidth = 800;
-        int worldHeight = 600;
+        int worldHeight = 1200;
 
         createObjects(worldWidth, worldHeight);
         initView(worldWidth, worldHeight);
 
         map = new Map(this);
-        menuManager = new MenuManager();
+        menuManager = new MenuManager(0,0,800,1200);
         addDashboard(menuManager);
     }
 
