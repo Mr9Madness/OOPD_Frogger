@@ -84,22 +84,21 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
         for (CollidedTile ct : collidedTiles)
         {
-            // Kijkt alleen naar een finish tile en als die in (inside) de tile is word de finish method uitgevoerd
+            // Kijkt alleen naar een finish tile en als die in (inside) de tile is wordt de finish method uitgevoerd
             if (ct.theTile instanceof FinishTile)
             {
-                ((FinishTile) ct.theTile).Finish();
+                //((FinishTile) ct.theTile).Finish();
+                setY(Y+50);
+            }
+            else if (ct.theTile instanceof SafeFinishTile)
+            {
+                ((SafeFinishTile) ct.theTile).Finish();
             }
             else if( ct.theTile instanceof WaterTile)
             {
                 lives--;
                 System.out.println("GET OUT, WATER!!!. you have" + lives + " frogs now!");
                 //setY(100000);
-            }
-            else if( ct.theTile instanceof FinishTile)
-            {
-                //lives--;
-                System.out.println("GET OUT, PRIKKELS!!!.");
-                setY(100000);
             }
         }
     }

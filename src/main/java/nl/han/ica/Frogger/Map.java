@@ -21,8 +21,6 @@ public class Map {
         AddSection(new RiverSection(engine));
         AddSection(new RoadSection(engine));
         AddSection(new BallSection(engine));
-
-
         AddSection(new FinishSection(engine));
 
         engine.getView().setWorldSize(engine.getWidth(), engine.getTileMap().getMapHeight());
@@ -42,7 +40,7 @@ public class Map {
                 new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/Road.png" )),
                 new TileType<>(WaterTile.class, new Sprite( "src/main/assets/sprites/Water.png" )),
                 new TileType<>(BallTile.class, new Sprite( "src/main/assets/sprites/Air.png" )),
-                new TileType<>(FinishTile.class, new Sprite( "src/main/assets/sprites/SafeFinisch.png" )),
+                new TileType<>(SafeFinishTile.class, new Sprite( "src/main/assets/sprites/SafeFinisch.png" )),
                 new TileType<>(FinishTile.class, new Sprite( "src/main/assets/sprites/Finisch.png" ))
         };
 
