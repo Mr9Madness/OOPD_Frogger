@@ -40,8 +40,8 @@ public class Map {
                 new TileType<>(RoadTile.class, new Sprite( "src/main/assets/sprites/Road.png" )),
                 new TileType<>(WaterTile.class, new Sprite( "src/main/assets/sprites/Water.png" )),
                 new TileType<>(BallTile.class, new Sprite( "src/main/assets/sprites/Air.png" )),
-                new TileType<>(SafeFinishTile.class, new Sprite( "src/main/assets/sprites/SafeFinisch.png" )),
-                new TileType<>(FinishTile.class, new Sprite( "src/main/assets/sprites/Finisch.png" ))
+                new TileType<>(SafeFinishTile.class, new Sprite( "src/main/assets/sprites/SafeFinish.png" )),
+                new TileType<>(FinishTile.class, new Sprite( "src/main/assets/sprites/Finish.png" ))
         };
 
         int tileSize = 50;

@@ -1,5 +1,6 @@
 package nl.han.ica.Frogger;
 
+import nl.han.ica.Frogger.Menus.MenuManager;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.View.CenterFollowingViewport;
 import nl.han.ica.OOPD_Engine.View.View;
@@ -22,15 +23,23 @@ public class Frogger extends GameEngine
     @Override
     public void setupGame()
     {
-        int worldWidth = 800;
+        int screenWidth = 800;
+        int screenHeight = 600;
+        int worldWidth = 900;
         int worldHeight = 1200;
+        menuManager = new MenuManager(this, screenWidth, screenHeight, true); // TODO: Verander ingame naar false zodra het main menu menu bestaat
+        createObjects(screenWidth, screenHeight);
 
-        createObjects(worldWidth, worldHeight);
-        initView(worldWidth, worldHeight);
+        initView(screenWidth, screenHeight, worldWidth, worldHeight);
 
         map = new Map(this);
-        menuManager = new MenuManager(0,0,800,1200);
-        addDashboard(menuManager);
+    }
+
+    public void EndGame()
+    {
+        menuManager.ShowGameOver(frog);
+        deleteGameObject(frog);
+        frog = null;
     }
 
     /**
@@ -38,20 +47,20 @@ public class Frogger extends GameEngine
      * @param worldWidth Breedte van het scherm
      * @param worldHeight Hoogte van het scherm
      */
-    private void initView(int worldWidth, int worldHeight)
+    private void initView( int screenWidth, int screenHeight, int worldWidth, int worldHeight)
     {
-        CenterFollowingViewport viewPort = new CenterFollowingViewport(frog, worldWidth, worldHeight,0,0);
+        CenterFollowingViewport viewPort = new CenterFollowingViewport(frog, screenWidth, screenHeight,0,0);
         viewPort.setTolerance(50, 50, 50, 50);
-        View view = new View(viewPort, 950, 750);
+        View view = new View(viewPort, worldWidth, worldHeight);
         view.setBackground(0,0,0);
         setView(view);
-        size(worldWidth, worldHeight);
+        size(screenWidth, screenHeight);
     }
 
     /** Maakt de spelobjecten aan */
     private void createObjects(int worldWidth, int worldHeight)
     {
-        frog = new Player(this);
+        frog = new Player(this, menuManager);
         addGameObject(frog, worldWidth/2, 100000);
     }
 

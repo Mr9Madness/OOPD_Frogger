@@ -1,10 +1,13 @@
 package nl.han.ica.Frogger;
 
+import nl.han.ica.Frogger.Menus.GameMenu;
+import nl.han.ica.Frogger.Menus.MenuManager;
 import nl.han.ica.Frogger.tiles.FinishTile;
 import nl.han.ica.Frogger.tiles.SafeFinishTile;
 import nl.han.ica.Frogger.tiles.WaterTile;
 import nl.han.ica.OOPD_Engine.Collision.CollidedTile;
 import nl.han.ica.OOPD_Engine.Collision.ICollidableWithTiles;
+import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 import processing.core.PVector;
@@ -12,68 +15,79 @@ import processing.core.PVector;
 import java.util.List;
 
 /**
- * @author Ralph Niels
  * De spelerklasse (het paarse visje)
  */
 public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 {
 
     private final int size = 50;
-    private final Frogger frog;
+    private final Frogger engine;
+    private final GameMenu gameMenu;
+    private int currentScore = 0;
 
     private int lives = 5;
 
     /**
      * Constructor
-     * @param _frog Referentie naar de wereld
+     * @param engine Referentie naar de wereld
      */
-    public Player(Frogger _frog)
+    public Player(Frogger engine, MenuManager menuManager)
     {
         super(new Sprite("src/main/assets/sprites/Frogger.png"), 1);
-        this.frog = _frog;
+        this.engine = engine;
+        this.gameMenu = ((GameMenu)menuManager.GetCurrentMenu());
         setCurrentFrameIndex(0);
         setFriction(.5f);
     }
 
+    public int GetPlayerScore() { return currentScore; }
+
     @Override
     public void update()
     {
-        if (getX() <= 0) {
+        if (getX() <= 0)
+        {
             setxSpeed(0);
             setX(0);
         }
-        if (getY() <= 0) {
+        if (getY() <= 0)
+        {
             setySpeed(0);
             setY(0);
         }
-        if (getX() >= frog.getWidth() - size) {
+        if (getX() >= engine.getWidth() - size)
+        {
             setxSpeed(0);
-            setX(frog.getWidth() - size);
+            setX(engine.getWidth() - size);
         }
-        if (getY() >= frog.getView().getWorldHeight() - size) {
+        if (getY() >= engine.getView().getWorldHeight() - size)
+        {
             setySpeed(0);
-            setY(frog.getView().getWorldHeight() - size);
+            setY(engine.getView().getWorldHeight() - size);
         }
+
+        if( lives <= 0 ) engine.EndGame();
+        gameMenu.UpdateScore( currentScore );
     }
 
     @Override
     public void keyPressed(int keyCode, char key) {
         final int speed = 50;
-        if (keyCode == frog.LEFT)
+        if (keyCode == engine.LEFT)
         {
             setDirectionSpeed(270, speed);
             setCurrentFrameIndex(0);
         }
-        else if (keyCode == frog.UP)
+        else if (keyCode == engine.UP)
         {
             setDirectionSpeed(0, speed);
         }
-        else if (keyCode == frog.RIGHT)
+        else if (keyCode == engine.RIGHT)
         {
             setDirectionSpeed(90, speed);
             setCurrentFrameIndex(0);
         }
-        else if (keyCode == frog.DOWN)
+        else if (keyCode == engine.DOWN)
         {
             setDirectionSpeed(180, speed);
         }
@@ -96,9 +110,11 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             }
             else if( ct.theTile instanceof WaterTile)
             {
+                gameMenu.RemoveLive(lives);
+
                 lives--;
-                System.out.println("GET OUT, WATER!!!. you have" + lives + " frogs now!");
-                //setY(100000);
+                System.out.println("GET OUT, WATER!!! you have " + lives + " frogs now!");
+                if( lives != 0 ) setY(100000);
             }
         }
     }
