@@ -10,13 +10,12 @@ import nl.han.ica.OOPD_Engine.Tile.TileType;
 import java.util.ArrayList;
 
 public class Map {
-    public ArrayList<Section> SectionList;
+    private ArrayList<Section> sectionList = new ArrayList<>();
 
     public Map(GameEngine engine)
     {
         engine.setTileMap( initTileMap() );
 
-        SectionList = new ArrayList<>();
         AddSection(new RoadSection(engine));
         AddSection(new RiverSection(engine));
         AddSection(new RoadSection(engine));
@@ -28,7 +27,7 @@ public class Map {
 
     public void AddSection( Section section )
     {
-        SectionList.add( section );
+        sectionList.add( section );
     }
 
     /** Initialiseert de tilemap */

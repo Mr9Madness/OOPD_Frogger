@@ -34,6 +34,7 @@ public class MenuManager
         else currentMenu = new MainMenu(screenWidth, screenHeight);
         engine.addDashboard(currentMenu);
     }
+    public Dashboard GetCurrentMenu() { return currentMenu; }
 
     public void ShowGameOver( Player player)
     {
@@ -45,5 +46,4 @@ public class MenuManager
         engine.addDashboard( currentMenu );
 
     }
-    public Dashboard GetCurrentMenu() { return currentMenu; }
 }

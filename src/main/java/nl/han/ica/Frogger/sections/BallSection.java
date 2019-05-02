@@ -15,5 +15,4 @@ public class BallSection extends Section {
 
         engine.getTileMap().setTileMap( super.appendTileMap(tileSection) );
     }
-
 }

@@ -13,10 +13,4 @@ public class FinishSection extends Section {
 
         engine.getTileMap().setTileMap( super.appendTileMap(tileSection) );
     }
-
-//    @Override
-//    public Section(GameEngine engine)
-//    {
-//        this.engine = engine;
-//    }
 }
