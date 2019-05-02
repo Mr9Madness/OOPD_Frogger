@@ -16,7 +16,7 @@ public class GameOverMenu extends Dashboard {
     {
         super(0, 0, worldWidth, worldHeight);
 
-        AddGameObject( "Background", new uiObject( 200, 150, 450, 350,0,0,0, 125), 200, 150);
+        AddGameObject( "Background", new uiObject( 200, 150, 400, 350,0,0,0, 125), 200, 150);
 
         AddGameObject( "GameOverTitle", new TextObject( "Game over", 20 ), 250, 175 );
 

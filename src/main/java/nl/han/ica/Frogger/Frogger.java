@@ -35,7 +35,7 @@ public class Frogger extends GameEngine
         map = new Map(this);
     }
 
-    public void EndGame()
+    void EndGame()
     {
         menuManager.ShowGameOver(frog);
         deleteGameObject(frog);
