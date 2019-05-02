@@ -11,13 +11,6 @@ public class uiSpriteObject extends SpriteObject {
         super(sprite);
     }
 
-    public uiSpriteObject(PVector pos, Sprite sprite)
-    {
-        this(sprite);
-        this.setX(pos.x);
-        this.setY(pos.y);
-    }
-
     @Override
     public void update() {
 
