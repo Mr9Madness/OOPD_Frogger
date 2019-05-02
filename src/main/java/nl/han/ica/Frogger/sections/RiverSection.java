@@ -11,7 +11,7 @@ public class RiverSection extends Section {
 
     public RiverSection(GameEngine engine)
     {
-        super(engine);
+        super(engine, true);
 
         engine.getTileMap().setTileMap( super.appendTileMap(tileSection) );
     }

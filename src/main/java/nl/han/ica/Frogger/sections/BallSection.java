@@ -11,7 +11,7 @@ public class BallSection extends Section {
 
     public BallSection(GameEngine engine)
     {
-        super(engine);
+        super(engine, true);
 
         engine.getTileMap().setTileMap( super.appendTileMap(tileSection) );
     }

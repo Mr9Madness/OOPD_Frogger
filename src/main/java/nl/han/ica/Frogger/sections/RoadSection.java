@@ -11,7 +11,7 @@ public class RoadSection extends Section {
 
     public RoadSection(GameEngine engine)
     {
-        super(engine);
+        super(engine, true);
 
         engine.getTileMap().setTileMap( super.appendTileMap(tileSection) );
     }

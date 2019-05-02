@@ -99,7 +99,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             {
                 //lives--;
                 System.out.println("GET OUT, PRIKKELS!!!.");
-                setY(Y - 50);
+                setY(100000);
             }
         }
     }
