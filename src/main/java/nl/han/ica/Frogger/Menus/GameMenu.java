@@ -29,7 +29,7 @@ public class GameMenu extends Dashboard {
     private void AddLives(int amount)
     {
         for (int i = 1; i <= amount; i++)
-            AddGameObject( "PlayerLife" + i, new uiSpriteObject( new Sprite( "src/main/assets/sprites/littleFrogger.png" ) ), (25 * i - 1) + (5 * i - 1), 10 );
+            AddGameObject( "PlayerLife" + i, new uiSpriteObject( new Sprite( "src/main/assets/sprites/LittleFrogger.png" ) ), (25 * i - 1) + (5 * i - 1), 10 );
     }
 
     public void UpdateScore( int score )
