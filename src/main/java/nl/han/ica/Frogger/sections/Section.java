@@ -16,14 +16,14 @@ public class Section {
 
     public Section(GameEngine engine)
     {
-        this.engine = engine;
+        this(engine, true);
     }
 
     public Section(GameEngine engine, boolean loadSafeLine)
     {
         this.engine = engine;
 
-        engine.getTileMap().setTileMap(appendTileMap(tileSection));
+        if( loadSafeLine ) engine.getTileMap().setTileMap(appendTileMap(tileSection));
     }
 
     public Section(GameEngine engine, PVector pos, PVector size)
