@@ -1,5 +1,6 @@
 package nl.han.ica.Frogger.Menus;
 
+import nl.han.ica.Frogger.Menus.Objects.uiButton;
 import nl.han.ica.Frogger.Menus.Objects.uiObject;
 import nl.han.ica.Frogger.Menus.Objects.uiSpriteObject;
 import nl.han.ica.Frogger.Player;
@@ -25,6 +26,8 @@ public class GameOverMenu extends Dashboard {
         AddGameObject( "FinalPlayerScore", new TextObject( "Score: " + player.GetPlayerScore(), 20 ), 250, 210 );
 
         AddGameObject( "GaveOverImage", new uiSpriteObject( new Sprite("src/main/assets/sprites/GameOver216.jpg")), 275, 225 );
+
+        //AddGameObject( "GaveOverButton", new uiButton( 250, 300, 50, 25, "Terug", 0,0,0,125 ), 250, 300);
     }
 
     private void AddGameObject(String key, GameObject object, int x, int y )
