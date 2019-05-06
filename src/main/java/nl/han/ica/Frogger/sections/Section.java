@@ -41,6 +41,7 @@ public abstract class Section {
         return newTileMap;
     }
     public abstract void spawnEntity();
+
     public PVector getSize() {
         return size;
     }

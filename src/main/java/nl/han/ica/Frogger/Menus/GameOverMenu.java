@@ -27,7 +27,12 @@ public class GameOverMenu extends Dashboard {
 
         AddGameObject( "GaveOverImage", new uiSpriteObject( new Sprite("src/main/assets/sprites/GameOver216.jpg")), 275, 225 );
 
-        //AddGameObject( "GaveOverButton", new uiButton( 250, 300, 50, 25, "Terug", 0,0,0,125 ), 250, 300);
+        AddGameObject( "GaveOverButton", new uiButton( 250, 450, 115, 35, "Terug", 0,0,0,125 ));
+    }
+    private void AddGameObject(String key, GameObject object )
+    {
+        menuObjects.put( key, object );
+        addGameObject( object );
     }
 
     private void AddGameObject(String key, GameObject object, int x, int y )
