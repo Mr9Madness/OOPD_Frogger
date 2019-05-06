@@ -4,7 +4,7 @@ import nl.han.ica.Frogger.Vector;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import processing.core.PVector;
 
-public class Section {
+public abstract class Section {
     protected PVector pos;
     protected PVector size;
 
@@ -14,24 +14,18 @@ public class Section {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     };
 
-    public Section(GameEngine engine)
-    {
-        this(engine, true);
-    }
 
     public Section(GameEngine engine, boolean loadSafeLine)
     {
         this.engine = engine;
 
         if( loadSafeLine ) engine.getTileMap().setTileMap(appendTileMap(tileSection));
+        else engine.getTileMap().setTileMap(appendTileMap(tileSection));
     }
 
-    public Section(GameEngine engine, PVector pos, PVector size)
+    public Section(GameEngine engine)
     {
         this(engine, true);
-
-        this.pos = pos;
-        this.size = size;
     }
 
     protected int[][] appendTileMap( int[][] appendingSection )
@@ -46,14 +40,17 @@ public class Section {
         }
         return newTileMap;
     }
-
+    public abstract void spawnEntity();
     public PVector getSize() {
         return size;
     }
+    public void setSize() { this.size = new PVector(tileSection.length * 50, tileSection[0].length * 50);}
+    public void setSize( PVector size) { this.size = size;}
 
     public PVector getPos() {
         return pos;
     }
+    public void setPos( PVector pos ) { this.pos = pos;}
 
     public Vector<PVector> getBounds()
     {

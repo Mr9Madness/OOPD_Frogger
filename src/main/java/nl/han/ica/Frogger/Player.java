@@ -6,18 +6,21 @@ import nl.han.ica.Frogger.tiles.FinishTile;
 import nl.han.ica.Frogger.tiles.SafeFinishTile;
 import nl.han.ica.Frogger.tiles.WaterTile;
 import nl.han.ica.OOPD_Engine.Collision.CollidedTile;
+
+import nl.han.ica.OOPD_Engine.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPD_Engine.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
+import nl.han.ica.OOPD_Engine.Objects.GameObject;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 import processing.core.PVector;
 
 import java.util.List;
 
 /**
- * De spelerklasse (het paarse visje)
+ * Player class
  */
-public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
+public class Player extends AnimatedSpriteObject implements ICollidableWithTiles, ICollidableWithGameObjects
 {
 
     private final int size = 50;
@@ -38,6 +41,13 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         this.gameMenu = ((GameMenu)menuManager.GetCurrentMenu());
         setCurrentFrameIndex(0);
         setFriction(.5f);
+    }
+    private void onHit() {
+        gameMenu.RemoveLive(lives);
+
+        lives--;
+        System.out.println("you have " + lives + " frogs now!");
+        if( lives != 0 ) setY(100000);
     }
 
     public int GetPlayerScore() { return currentScore; }
@@ -110,12 +120,13 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             }
             else if( ct.theTile instanceof WaterTile)
             {
-                gameMenu.RemoveLive(lives);
-
-                lives--;
-                System.out.println("GET OUT, WATER!!! you have " + lives + " frogs now!");
-                if( lives != 0 ) setY(100000);
+                onHit();
             }
         }
+    }
+
+    @Override
+    public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
+        onHit();
     }
 }

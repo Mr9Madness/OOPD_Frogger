@@ -129,10 +129,10 @@ public abstract class GameEngine extends PApplet {
      * @param y
      */
     public void addGameObject(GameObject gameObject, float x, float y) {
-    	addGameObject(gameObject);
-    	
         gameObject.setX(x);
         gameObject.setY(y);
+        addGameObject(gameObject);
+    	
     }
     
     /**
@@ -265,7 +265,6 @@ public abstract class GameEngine extends PApplet {
      * This method is called by the GameThread.
      */
     public void updateGame() {
-    	
         updateGameObjects();
         updateDashboards();
         

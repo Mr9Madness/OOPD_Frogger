@@ -6,21 +6,33 @@ import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 import nl.han.ica.OOPD_Engine.Tile.TileMap;
 import nl.han.ica.OOPD_Engine.Tile.TileType;
+import processing.core.PVector;
 
 import java.util.ArrayList;
 
 public class Map {
     private ArrayList<Section> sectionList = new ArrayList<>();
 
-    public Map(GameEngine engine)
+    public Map(Frogger engine)
     {
         engine.setTileMap( initTileMap() );
 
-        AddSection(new RoadSection(engine));
+        AddSection(new RoadSection(engine ));
+        //AddSection(new RoadSection(engine));
         AddSection(new RiverSection(engine));
         AddSection(new RoadSection(engine));
         AddSection(new BallSection(engine));
         AddSection(new FinishSection(engine));
+
+        for (int i = 0; i < sectionList.size(); i++) {
+            if( i == 0 ) sectionList.get(i).setPos(new PVector(0,100));
+            else sectionList.get(i).setPos(new PVector(
+                sectionList.get(i - 1).getPos().x + sectionList.get(i - 1).getSize().x,
+                sectionList.get(i - 1).getPos().y + sectionList.get(i - 1).getSize().y
+            ));
+            sectionList.get(i).setSize();
+            sectionList.get(i).spawnEntity();
+        }
 
         engine.getView().setWorldSize(engine.getWidth(), engine.getTileMap().getMapHeight());
     }
@@ -45,7 +57,6 @@ public class Map {
 
         int tileSize = 50;
         int[][] tileMapData = {
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
         };
         return new TileMap(tileSize, tileType, tileMapData);

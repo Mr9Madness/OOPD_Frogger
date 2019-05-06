@@ -1,6 +1,7 @@
 package nl.han.ica.Frogger.sections;
 
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
+import processing.core.PVector;
 
 public class RiverSection extends Section {
     private int[][] tileSection = {
@@ -14,5 +15,10 @@ public class RiverSection extends Section {
         super(engine, true);
 
         engine.getTileMap().setTileMap( super.appendTileMap(tileSection) );
+    }
+
+    @Override
+    public void spawnEntity() {
+
     }
 }
