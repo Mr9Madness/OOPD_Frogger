@@ -2,12 +2,8 @@ package nl.han.ica.Frogger.sections;
 
 import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.Frogger.Objects.RoadObjects.Car;
-import nl.han.ica.Frogger.Objects.RoadObjects.Bus;
+import nl.han.ica.Frogger.Objects.RoadObjects.FireCar;
 import nl.han.ica.Frogger.Objects.RoadObjects.Truck;
-import nl.han.ica.Frogger.Objects.RoadObjects.FastCar;
-
-import nl.han.ica.OOPD_Engine.Engine.GameEngine;
-import processing.core.PVector;
 
 public class RoadSection extends Section {
     private final Frogger engine;
@@ -31,7 +27,7 @@ public class RoadSection extends Section {
 
         engine.addGameObject(new Car(engine,90,1),0,pos.y + 50 - 60000); //RIGHT
         engine.addGameObject(new Truck(engine,90,1),500,pos.y); //RIGHT
-        engine.addGameObject(new Bus(engine,90,1),260,pos.y + 100); //RIGHT
+        engine.addGameObject(new FireCar(engine,90,1),260,pos.y + 100); //RIGHT
 
         engine.addGameObject(new Car(engine,270,1),engine.width,pos.y); //LEFT
 //        engine.addGameObject(new Car(engine,180,20),20,engine.height+20);

@@ -36,7 +36,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
      */
     public Player(Frogger engine, MenuManager menuManager)
     {
-        super(new Sprite("src/main/assets/sprites/Frogger.png"), 1);
+        super(new Sprite("src/main/assets/sprites/Frogger.png"), 7);
         this.engine = engine;
         this.gameMenu = ((GameMenu)menuManager.GetCurrentMenu());
         setCurrentFrameIndex(0);
@@ -55,6 +55,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     @Override
     public void update()
     {
+
         if (getX() <= 0)
         {
             setxSpeed(0);
@@ -86,20 +87,26 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         if (keyCode == engine.LEFT)
         {
             setDirectionSpeed(270, speed);
-            setCurrentFrameIndex(0);
+            setDirection(270);
+            nextFrame();
         }
         else if (keyCode == engine.UP)
         {
             setDirectionSpeed(0, speed);
+            setDirection(0);
+            nextFrame();
         }
         else if (keyCode == engine.RIGHT)
         {
             setDirectionSpeed(90, speed);
-            setCurrentFrameIndex(0);
+            setDirection(90);
+            nextFrame();
         }
         else if (keyCode == engine.DOWN)
         {
             setDirectionSpeed(180, speed);
+            setDirection(180);
+            nextFrame();
         }
     }
 
