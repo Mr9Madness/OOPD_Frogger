@@ -36,7 +36,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
      */
     public Player(Frogger engine, MenuManager menuManager)
     {
-        super(new Sprite("src/main/assets/sprites/Frogger.png"), 7);
+        super(new Sprite("src/main/assets/sprites/Frogger.png"), 3);
         this.engine = engine;
         this.gameMenu = ((GameMenu)menuManager.GetCurrentMenu());
         setCurrentFrameIndex(0);
