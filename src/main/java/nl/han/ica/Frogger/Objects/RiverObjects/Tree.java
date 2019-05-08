@@ -14,8 +14,9 @@ public class Tree extends RiverObjects {
      * @param direction The direction the object is traveling
      * @param speed The speed the object is traveling
      **/
-    public Tree(Frogger engine, float direction, float speed) {
-        super(engine, new Sprite("src/main/assets/sprites/Tree.png"), 4, direction, speed);
+    public Tree(Frogger engine, TreeSize treeSize, float direction, float speed) {
+
+        super(engine, new Sprite(treeSize.getSpritePath()), direction, speed);
         this.engine = engine;
     }
 }

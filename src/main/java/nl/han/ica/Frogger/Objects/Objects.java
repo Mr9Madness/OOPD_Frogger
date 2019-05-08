@@ -4,8 +4,9 @@ import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 import nl.han.ica.OOPD_Engine.Objects.GameObject;
+import nl.han.ica.OOPD_Engine.Objects.SpriteObject;
 
-public class Objects extends AnimatedSpriteObject {
+public class Objects extends SpriteObject {
 
     private final Frogger engine;
     /**
@@ -13,12 +14,11 @@ public class Objects extends AnimatedSpriteObject {
      *
      * @param engine The engine used, needed to determine the worldsize
      * @param sprite The sprite that is used for the object
-     * @param totalFrames The number of frames the object has
      * @param direction The direction the object is traveling
      * @param speed The speed the object is traveling
      **/
-    public Objects(Frogger engine,Sprite sprite, int totalFrames, float direction, float speed) {
-        super(sprite, totalFrames);
+    public Objects(Frogger engine,Sprite sprite, float direction, float speed) {
+        super(sprite);
         this.engine = engine;
         setDirectionSpeed(direction, speed);
     }
@@ -41,7 +41,7 @@ public class Objects extends AnimatedSpriteObject {
     public void update() {
         //engine.pauseGame();
 
-        nextFrame();
+
 
       //  System.out.println("Direction "+getDirection()+ " / X: "+getX()+"/"+engine.width+" / Y:"+y+"/"+engine.getView().getWorldHeight());
 

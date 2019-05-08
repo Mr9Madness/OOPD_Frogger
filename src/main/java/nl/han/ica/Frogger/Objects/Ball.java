@@ -15,7 +15,7 @@ public class Ball extends Objects {
      * @param speed The speed the object is traveling
      */
     public Ball(Frogger engine, float direction, float speed) {
-        super(engine, new Sprite("src/main/assets/sprites/Ball.png"), 2, direction, speed);
+        super(engine, new Sprite("src/main/assets/sprites/Ball.png"), direction, speed);
         //super(new Sprite("src/main/assets/sprites/Ball.png"), 2);
         this.engine = engine;
         setDirectionSpeed(direction, speed);

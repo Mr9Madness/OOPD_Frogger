@@ -23,20 +23,22 @@ public class RoadSection extends Section {
     @Override
     public void spawnEntity()
     {
-        System.out.println("Direction " + pos + " / " + size);
-        engine.addGameObject(new Car(engine,270,1),60,800); //LEFT
-        engine.addGameObject(new Car(engine,270,1),200,800); //LEFT
-        engine.addGameObject(new Car(engine,270,1),534,800); //LEFT
-        engine.addGameObject(new Car(engine,270,1),720,800); //LEFT
+        System.out.println("Direction " + pos + " / " + size+ " / engine:"+engine.height+" / view:"+engine.getView().getWorldHeight());
 
-//        engine.addGameObject(new FireCar(engine,90,2),260,735); //RIGHT
-//        engine.addGameObject(new FireCar(engine,90,2),90,735); //RIGHT
-//        engine.addGameObject(new FireCar(engine,90,2),560,735); //RIGHT
-//
+
+        engine.addGameObject(new Car(engine,270,1),60,600); //LEFT
+        engine.addGameObject(new Car(engine,270,1),200,600); //LEFT
+        engine.addGameObject(new Car(engine,270,1),534,600); //LEFT
+        engine.addGameObject(new Car(engine,270,1),720,600); //LEFT
+
+    //    engine.addGameObject(new FireCar(engine,90,2),260,500); //RIGHT
+  //      engine.addGameObject(new FireCar(engine,90,2),90,500); //RIGHT
+      //  engine.addGameObject(new FireCar(engine,90,2),560,500); //RIGHT
+
 //        engine.addGameObject(new Truck(engine,270,1),0,690); //LEFT
-//        engine.addGameObject(new Truck(engine,270,1),334,690); //LEFT
-//        engine.addGameObject(new Truck(engine,270,1),720,690); //LEFT
-////
+ //       engine.addGameObject(new Truck(engine,270,1),334,690); //LEFT
+   //     engine.addGameObject(new Truck(engine,270,1),720,690); //LEFT
+
 //        engine.addGameObject(new Car(engine,90,1),0,pos.y + 50 - 60000); //RIGHT
 //        engine.addGameObject(new Truck(engine,90,1),500,pos.y); //RIGHT
 //        engine.addGameObject(new FireCar(engine,90,1),260,pos.y + 100); //RIGHT

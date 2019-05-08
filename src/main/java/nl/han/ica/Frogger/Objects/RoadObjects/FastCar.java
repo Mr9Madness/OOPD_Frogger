@@ -15,7 +15,7 @@ public class FastCar extends RoadObjects {
      * @param speed The speed the object is traveling
      **/
     public FastCar(Frogger engine, float direction, float speed) {
-        super(engine, new Sprite("src/main/assets/sprites/Crocodile.png"), 4, direction, speed);
+        super(engine, new Sprite("src/main/assets/sprites/Crocodile.png"), direction, speed);
         this.engine = engine;
     }
 }

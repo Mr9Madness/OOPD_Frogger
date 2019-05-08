@@ -17,8 +17,8 @@ public class RoadObjects extends Objects {
      * @param direction The direction the object is traveling
      * @param speed The speed the object is traveling
      **/
-    public RoadObjects(Frogger engine, Sprite sprite, int totalFrames, float direction, float speed) {
-        super(engine, sprite, totalFrames, direction, speed);
+    public RoadObjects(Frogger engine, Sprite sprite, float direction, float speed) {
+        super(engine, sprite, direction, speed);
         this.engine = engine;
     }
 }

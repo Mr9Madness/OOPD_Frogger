@@ -18,9 +18,7 @@ public class Map {
         engine.setTileMap( initTileMap() );
 
         AddSection(new RoadSection(engine ));
-        //AddSection(new RoadSection(engine));
         AddSection(new RiverSection(engine));
-        AddSection(new RoadSection(engine));
         AddSection(new BallSection(engine));
         AddSection(new FinishSection(engine));
 

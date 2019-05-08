@@ -14,7 +14,7 @@ public class Truck extends RoadObjects {
      * @param speed The speed the object is traveling
      **/
     public Truck(Frogger engine, float direction, float speed) {
-        super(engine, new Sprite("src/main/assets/obstacles/Truck.png"), 2, direction, speed);
+        super(engine, new Sprite("src/main/assets/obstacles/Truck.png"), direction, speed);
         this.engine = engine;
     }
 }
