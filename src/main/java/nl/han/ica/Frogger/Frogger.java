@@ -24,7 +24,7 @@ public class Frogger extends GameEngine
     public void setupGame()
     {
         int screenWidth = 800;
-        int screenHeight = 600;
+        int screenHeight = 1200;
         int worldWidth = 900;
         int worldHeight = 1200;
         menuManager = new MenuManager(this, screenWidth, screenHeight, true); // TODO: Verander ingame naar false zodra het main menu menu bestaat
