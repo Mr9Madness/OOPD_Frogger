@@ -52,10 +52,10 @@ public class uiButton extends GameObject {
     @Override
     public void draw(PGraphics g)
     {
-        g.background(this.r, this.g, this.b, this.alpha);
-        g.rect(x, y, x + width, y + height);
+        g.color(this.r, this.g, this.b);
+        g.rect(x, y, width, height);
 
-        g.color(255, 255, 255);
+        g.color(255, 255, 255, 155);
         g.text( text, x + (width / 2), y + ( height / 2 ));
     }
 
