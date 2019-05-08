@@ -5,7 +5,6 @@ import nl.han.ica.OOPD_Engine.Objects.Sprite;
 
 public class Car extends RoadObjects {
     private final Frogger engine;
-    private final int size = 50;
 
     /**
      * Constructor

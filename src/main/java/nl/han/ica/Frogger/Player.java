@@ -83,6 +83,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
     @Override
     public void keyPressed(int keyCode, char key) {
+        System.out.println("Y: "+getY());
         final int speed = 50;
         if (keyCode == engine.LEFT)
         {

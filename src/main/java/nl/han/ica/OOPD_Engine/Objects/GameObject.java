@@ -205,7 +205,6 @@ public abstract class GameObject implements IKeyInput, IMouseInput, PConstants {
 
         //Set new direction
         direction = newDirection;
-
         calculateMovement();
     }
 

@@ -41,7 +41,7 @@ public class Objects extends AnimatedSpriteObject {
     public void update() {
         //engine.pauseGame();
 
-        //nextFrame();
+        nextFrame();
 
       //  System.out.println("Direction "+getDirection()+ " / X: "+getX()+"/"+engine.width+" / Y:"+y+"/"+engine.getView().getWorldHeight());
 
