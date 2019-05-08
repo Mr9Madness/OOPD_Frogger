@@ -5,7 +5,7 @@ import processing.core.PVector;
 
 public class FinishSection extends Section {
     private int[][] tileSection = {
-            {6,6,6,6,6,6,6,6,6,5,6,6,6,6,6,6,6,6,6,5,6,6,6,6},
+            {5,5,5,5,5,5,5,5,5,4,5,5,5,5,5,5,5,5,5,4,5,5,5,5},
     };
 
     public FinishSection(GameEngine engine)
