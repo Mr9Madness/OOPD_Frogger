@@ -90,26 +90,29 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         final int speed = 50;
         if (keyCode == engine.LEFT)
         {
-            setDirectionSpeed(270, speed);
-            setDirection(270);
+  //          setDirectionSpeed(270, speed);
+            setX(getX()-speed);
             nextFrame();
         }
         else if (keyCode == engine.UP)
         {
-            setDirectionSpeed(0, speed);
-            setDirection(0);
+//            setDirectionSpeed(0, speed);
+            //setDirection(0);
+            setY(getY()-speed);
             nextFrame();
         }
         else if (keyCode == engine.RIGHT)
         {
-            setDirectionSpeed(90, speed);
-            setDirection(90);
+            //setDirectionSpeed(90, speed);
+            //setDirection(90);
+            setX(getX()+speed);
             nextFrame();
         }
         else if (keyCode == engine.DOWN)
         {
-            setDirectionSpeed(180, speed);
-            setDirection(180);
+            //setDirectionSpeed(180, speed);
+            //setDirection(180);
+            setY(getY()+speed);
             nextFrame();
         }
     }
