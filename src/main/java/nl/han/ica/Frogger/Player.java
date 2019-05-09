@@ -2,6 +2,7 @@ package nl.han.ica.Frogger;
 
 import nl.han.ica.Frogger.Menus.GameMenu;
 import nl.han.ica.Frogger.Menus.MenuManager;
+import nl.han.ica.Frogger.Objects.Ball;
 import nl.han.ica.Frogger.Objects.RiverObjects.Tree;
 import nl.han.ica.Frogger.Objects.RoadObjects.RoadObjects;
 import nl.han.ica.Frogger.tiles.FinishTile;
@@ -28,7 +29,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     private final GameMenu gameMenu;
     private int currentScore = 0;
     private boolean isOnSafeObject = false;
-    private Sound froggerJump,froggerSplash,froggerCarScreech;
+    private Sound froggerJump,froggerSplash,froggerCarScreech,froggerBallSploing;
 
     private int lives = 5;
     private int countFrogsOnFinish = 0;
@@ -48,6 +49,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         froggerJump = new Sound(engine, "src/main/assets/sounds/frogger-hop.wav");
         froggerSplash = new Sound(engine, "src/main/assets/sounds/frogger-splash.wav");
         froggerCarScreech = new Sound(engine, "src/main/assets/sounds/carsplat.mp3");
+        froggerBallSploing= new Sound(engine, "src/main/assets/sounds/frogger-boing.wav");
         setCurrentFrameIndex(0);
         setZ(25);
         setFriction(.5f);
@@ -154,11 +156,16 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                     setY(getY()+50);
                     isOnSafeObject=false;
                 }
-            } if (ct instanceof RoadObjects) {
-                froggerCarScreech.rewind();
+            } else if (ct instanceof Ball) {
+                fr.rewind();
                 froggerCarScreech.play();
                 onHit();
-            }
+            } else if (ct instanceof RoadObjects) {
+            froggerCarScreech.rewind();
+            froggerCarScreech.play();
+            onHit();
+        }
+
             else //alle andere objecten
             {
                 isOnSafeObject =false;
