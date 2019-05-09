@@ -85,10 +85,10 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         if( lives <= 0 ) engine.EndGame();
         gameMenu.UpdateScore( currentScore );
     }
-    private void jump {
-    nextFrame();
-    .rewind();
-    popSound.play();
+    private void jump (){
+        nextFrame();
+    //.rewind();
+    //popSound.play();
 }
     @Override
     public void keyPressed(int keyCode, char key) {
@@ -100,21 +100,21 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
   //          setDirectionSpeed(270, speed);
             setX(getX()-speed);
 
-            nextFrame();
+            jump();
         }
         else if (keyCode == engine.UP)
         {
 //            setDirectionSpeed(0, speed);
             //setDirection(0);
             setY(getY()-speed);
-            nextFrame();
+            jump();
         }
         else if (keyCode == engine.RIGHT)
         {
             //setDirectionSpeed(90, speed);
             //setDirection(90);
             setX(getX()+speed);
-            nextFrame();
+            jump();
         }
         else if (keyCode == engine.DOWN)
         {
@@ -122,7 +122,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             //setDirection(180);
             setY(getY()+speed);
 
-            nextFrame();
+            jump();
         }
     }
 
