@@ -116,6 +116,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             //setDirectionSpeed(180, speed);
             //setDirection(180);
             setY(getY()+speed);
+
             nextFrame();
         }
     }
@@ -131,9 +132,13 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 //setX(ct.getCenterX()-(getWidth()/2));
                 if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
-                    setX(getX()-50);
-                    System.out.println("Locatie kikker: "+getX()+" / Boomstam:"+ct.getX()+" / getx-50: "+(getX()-50)+" / direction: "+direction);
-                    System.out.println("lctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
+                    System.out.println("boomstam: "+(ct.getX()-ct.getxSpeed())+" / kikkker:"+(getX()-getWidth()));
+                    if (ct.getX()-ct.getxSpeed()<=(getX()-getWidth()))
+                        setX(getX()+ct.getxSpeed());
+                    //System.out.println("Locatie kikker voor: "+getX()+" / getxsp: "+ (getX()-ct.getxSpeed())+ "/ maxlinks:"+(ct.getX()-ct.getxSpeed())+" / getx-50: "+(getX()-50)+" getxspeedboomstam/ "+ct.getxSpeed()+" / direction: "+direction);
+                    //setX(getX()+ct.getxSpeed());
+                   // System.out.println("Locatie kikker na: "+getX()+" / Boomstam:"+ct.getX()+ct.getWidth()+" / getx-50: "+(getX()-50)+" / direction: "+direction);
+                    //System.out.println("lctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
 
                 }
                 else if (getX()<=0 && getDirection()==270.0) {
