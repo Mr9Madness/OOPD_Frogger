@@ -1,11 +1,8 @@
 package nl.han.ica.Frogger.Menus;
 
-import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.Frogger.Player;
-import nl.han.ica.Frogger.Vector;
 import nl.han.ica.OOPD_Engine.Dashboard.Dashboard;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
-import nl.han.ica.OOPD_Engine.Objects.GameObject;
 
 public class MenuManager
 {
@@ -36,12 +33,22 @@ public class MenuManager
     }
     public Dashboard GetCurrentMenu() { return currentMenu; }
 
+    public void StartGame()
+    {
+        this.isGamePlaying = true;
+        engine.deleteDashboard( currentMenu );
+
+        currentMenu = new GameMenu( currentMenu.getWidth(), currentMenu.getHeight() );
+
+        engine.addDashboard( currentMenu );
+
+    }
     public void ShowGameOver( Player player)
     {
         this.isGamePlaying = false;
         engine.deleteDashboard( currentMenu );
 
-        currentMenu = new GameOverMenu( currentMenu.getWidth(), currentMenu.getHeight(), player );
+        currentMenu = new GameOverMenu( engine, currentMenu.getWidth(), currentMenu.getHeight(), player );
 
         engine.addDashboard( currentMenu );
 

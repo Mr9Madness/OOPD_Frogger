@@ -1,5 +1,6 @@
 package nl.han.ica.Frogger.Menus.Objects;
 
+import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.OOPD_Engine.Objects.GameObject;
 import processing.core.PGraphics;
 
@@ -9,22 +10,25 @@ public class uiButton extends GameObject {
     private float x, y, width, height;
     private String text;
 
+    private Frogger callback;
+
     /**
      * Create a new generic UI Button.
      */
-    public uiButton(float x, float y, float width, float height, String text)
+    public uiButton(float x, float y, float width, float height, String text, Frogger callback)
     {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.text = text;
+        this.callback = callback;
     }
 
     /**
      * Create a new generic UI Button with color.
      */
-    public uiButton(float x, float y, float width, float height, String text, int r, int g, int b, int alpha)
+    public uiButton(float x, float y, float width, float height, String text, int r, int g, int b, int alpha, Frogger callback)
     {
         this.x = x;
         this.y = y;
@@ -36,11 +40,25 @@ public class uiButton extends GameObject {
         this.g = g;
         this.b = b;
         this.alpha = alpha;
+        this.callback = callback;
     }
 
-    /**
-     * Override or implement this method to handle updates inside this object.
-     */
+    private boolean isOver( float mX, float mY )
+    {
+        return mX > getX() && mX < getX() + getWidth() && mY > getY() && mY < getY() + getHeight();
+    }
+
+
+    public void mouseUpdate(float x, float y)
+    {
+        System.out.println(x + " " + y);
+
+        if( isOver( x, y ) )
+        {
+            callback.RestartGame();
+        }
+    }
+
     @Override
     public void update() {
 
@@ -52,11 +70,11 @@ public class uiButton extends GameObject {
     @Override
     public void draw(PGraphics g)
     {
-        g.color(this.r, this.g, this.b);
+        g.fill(this.r, this.g, this.b);
         g.rect(x, y, width, height);
 
-        g.color(255, 255, 255, 155);
-        g.text( text, x + (width / 2), y + ( height / 2 ));
+        g.fill(255, 255, 255, 155);
+        g.text( text, x, y + ( height / 2 ));
     }
 
     /**

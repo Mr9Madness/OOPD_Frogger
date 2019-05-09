@@ -1,10 +1,12 @@
 package nl.han.ica.Frogger.Menus;
 
+import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.Frogger.Menus.Objects.uiButton;
 import nl.han.ica.Frogger.Menus.Objects.uiObject;
 import nl.han.ica.Frogger.Menus.Objects.uiSpriteObject;
 import nl.han.ica.Frogger.Player;
 import nl.han.ica.OOPD_Engine.Dashboard.Dashboard;
+import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.Objects.GameObject;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 import nl.han.ica.OOPD_Engine.Objects.TextObject;
@@ -14,10 +16,13 @@ import java.util.Map;
 
 public class GameOverMenu extends Dashboard {
     private Map<String, GameObject> menuObjects = new HashMap<>();
+    private GameEngine engine;
 
-    public GameOverMenu(float worldWidth, float worldHeight, Player player)
+
+    public GameOverMenu(GameEngine engine, float worldWidth, float worldHeight, Player player)
     {
         super(0, 0, worldWidth, worldHeight);
+        this.engine = engine;
 
         AddGameObject( "Background", new uiObject( 200, 150, 400, 350,0,0,0, 125), 200, 150);
 
@@ -27,7 +32,7 @@ public class GameOverMenu extends Dashboard {
 
         AddGameObject( "GaveOverImage", new uiSpriteObject( new Sprite("src/main/assets/sprites/GameOver216.jpg")), 275, 225 );
 
-        AddGameObject( "GaveOverButton", new uiButton( 250, 450, 115, 35, "Terug", 0,0,0,125 ));
+        AddGameObject( "GaveOverButton", new uiButton( 250, 450, 115, 35, "Restart", 0,0,0,125, (Frogger)engine));
     }
     private void AddGameObject(String key, GameObject object )
     {
@@ -40,4 +45,13 @@ public class GameOverMenu extends Dashboard {
         menuObjects.put( key, object );
         addGameObject( object, x, y );
     }
+
+    @Override
+    public void update() {
+        for (Map.Entry<String, GameObject> object: menuObjects.entrySet()) {
+            if( object.getValue() instanceof uiButton )
+                ((uiButton)object.getValue()).mouseUpdate(engine.mouseX, engine.mouseY);
+        }
+    }
+
 }
