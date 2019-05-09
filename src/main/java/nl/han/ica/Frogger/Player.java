@@ -157,13 +157,13 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                     isOnSafeObject=false;
                 }
             } else if (ct instanceof Ball) {
-                fr.rewind();
-                froggerCarScreech.play();
+                froggerBallSploing.rewind();
+                froggerBallSploing.play();
                 onHit();
             } else if (ct instanceof RoadObjects) {
-            froggerCarScreech.rewind();
-            froggerCarScreech.play();
-            onHit();
+                froggerCarScreech.rewind();
+                froggerCarScreech.play();
+                onHit();
         }
 
             else //alle andere objecten
