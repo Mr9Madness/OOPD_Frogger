@@ -9,6 +9,10 @@ import nl.han.ica.OOPD_Engine.Objects.TextObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Deze class zorgt voor het weergeven van de user interface
+ * Het betreft hier de score en de kikkers.
+ */
 public class GameMenu extends Dashboard {
     private Map<String, GameObject> menuObjects = new HashMap<>();
 

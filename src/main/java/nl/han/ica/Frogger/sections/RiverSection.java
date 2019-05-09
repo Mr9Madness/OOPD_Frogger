@@ -24,17 +24,17 @@ public class RiverSection extends Section {
     public void spawnEntity() {
         System.out.println("River Direction " + pos + " / " + size + " / engine:" + engine.height + " / view:" + engine.getView().getWorldHeight());
 
-        engine.addGameObject(new Tree(engine, TreeSize.Big,270, 1), 60, 400); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 600, 400); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 900, 400); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Big,270, 1), 60, 350); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 600, 350); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 900, 350); //LEFT
 
-        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 60, 350); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 600, 350); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 900, 350); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 60, 300); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 600, 300); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 900, 300); //LEFT
 
-        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 60, 300); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 600, 300); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 900, 300); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 60, 250); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 600, 250); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 900, 250); //LEFT
     }
 
     @Override

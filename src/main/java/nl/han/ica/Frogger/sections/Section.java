@@ -10,6 +10,9 @@ public abstract class Section {
 
     protected GameEngine engine;
 
+    /**
+     * Dit is de save Tile die tussen 2 secties in zit. Deze kan niet zichtbaar worden met de loadSafeline
+     */
     protected int[][] tileSection = {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     };
@@ -21,7 +24,6 @@ public abstract class Section {
         this.loadSafeLine = loadSafeLine;
 
         if( loadSafeLine ) engine.getTileMap().setTileMap(appendTileMap(tileSection));
-        else engine.getTileMap().setTileMap(appendTileMap(tileSection));
     }
 
     public Section(GameEngine engine)

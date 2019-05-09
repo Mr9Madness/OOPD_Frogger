@@ -10,7 +10,7 @@ public class FinishSection extends Section {
 
     public FinishSection(GameEngine engine)
     {
-        super(engine);
+        super(engine, false);
 
         engine.getTileMap().setTileMap( super.appendTileMap(tileSection) );
     }

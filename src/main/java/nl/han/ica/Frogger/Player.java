@@ -3,12 +3,10 @@ package nl.han.ica.Frogger;
 import nl.han.ica.Frogger.Menus.GameMenu;
 import nl.han.ica.Frogger.Menus.MenuManager;
 import nl.han.ica.Frogger.Objects.RiverObjects.Tree;
-import nl.han.ica.Frogger.Objects.RoadObjects.RoadObjects;
 import nl.han.ica.Frogger.tiles.FinishTile;
 import nl.han.ica.Frogger.tiles.SafeFinishTile;
 import nl.han.ica.Frogger.tiles.WaterTile;
 import nl.han.ica.OOPD_Engine.Collision.CollidedTile;
-
 import nl.han.ica.OOPD_Engine.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPD_Engine.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
@@ -33,6 +31,8 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
     private int lives = 5;
     private int countFrogsOnFinish = 0;
+    private int neededFrogsOnFinish = 1;
+    private long startTime = System.currentTimeMillis();
 
     /**
      * Constructor
@@ -87,7 +87,9 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             setySpeed(0);
             setY(engine.getView().getWorldHeight() - size);
         }
+        currentScore = (int)(System.currentTimeMillis() - startTime) / 1000;
 
+        if( countFrogsOnFinish >= neededFrogsOnFinish ) engine.FinishGame();
         if( lives <= 0 ) engine.EndGame();
         gameMenu.UpdateScore( currentScore );
     }
@@ -178,7 +180,8 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             else if (ct.theTile instanceof SafeFinishTile)
             {
                 ((SafeFinishTile) ct.theTile).Finish();
-                countFrogsOnFinish  = countFrogsOnFinish++;
+                countFrogsOnFinish++;
+                setY(10000);
                 // Actuele X en Y positie van de kikker pakken wanneer hij in de SafeFinishTile is, en in de huidige SafefinishTile een kikker neerzetten
                 // Vervolgens de positie van de huidige kikker weer terugzetten naar 0
             }

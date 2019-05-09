@@ -26,18 +26,18 @@ public class RoadSection extends Section {
     {
         System.out.println("Direction " + pos + " / " + size+ " / engine:"+engine.height+" / view:"+engine.getView().getWorldHeight());
 
-        engine.addGameObject(new Car(engine,270,1),60,600); //LEFT
-        engine.addGameObject(new Car(engine,270,1),200,600); //LEFT
-        engine.addGameObject(new Car(engine,270,1),534,600); //LEFT
-        engine.addGameObject(new Car(engine,270,1),720,600); //LEFT
+        engine.addGameObject(new Car(engine,270,1),60,550); //LEFT
+        engine.addGameObject(new Car(engine,270,1),200,550); //LEFT
+        engine.addGameObject(new Car(engine,270,1),534,550); //LEFT
+        engine.addGameObject(new Car(engine,270,1),720,550); //LEFT
 
-        engine.addGameObject(new FireCar(engine,90,2),260,550); //RIGHT
-        engine.addGameObject(new FireCar(engine,90,2),90,550); //RIGHT
-        engine.addGameObject(new FireCar(engine,90,2),560,550); //RIGHT
+        engine.addGameObject(new FireCar(engine,90,2),260,500); //RIGHT
+        engine.addGameObject(new FireCar(engine,90,2),90,500); //RIGHT
+        engine.addGameObject(new FireCar(engine,90,2),560,500); //RIGHT
 
-        engine.addGameObject(new Truck(engine,270,1),0,500); //LEFT
-        engine.addGameObject(new Truck(engine,270,1),334,500); //LEFT
-        engine.addGameObject(new Truck(engine,270,1),720,500); //LEFT
+        engine.addGameObject(new Truck(engine,270,1),0,450); //LEFT
+        engine.addGameObject(new Truck(engine,270,1),334,450); //LEFT
+        engine.addGameObject(new Truck(engine,270,1),720,450); //LEFT
     }
 
     @Override

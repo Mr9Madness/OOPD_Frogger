@@ -41,8 +41,9 @@ public class uiObject extends GameObject {
     @Override
     public void draw(PGraphics g)
     {
-        g.background(this.r, this.g, this.b, this.alpha);
-        g.color(r, this.g, b);
+        g.background(0, 0, 0, 155);
+
+        g.fill(this.r, this.g, this.b);
         g.rect(x1, y1, x2, y2);
     }
 

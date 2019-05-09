@@ -45,15 +45,12 @@ public class uiButton extends GameObject {
 
     private boolean isOver( float mX, float mY )
     {
-        return mX > getX() && mX < getX() + getWidth() && mY > getY() && mY < getY() + getHeight();
+        return mX > this.x && mX < this.x + this.width && mY > this.y && mY < this.y + this.height;
     }
 
-
-    public void mouseUpdate(float x, float y)
+    public void mouseUpdate(float x, float y, boolean clicked)
     {
-        System.out.println(x + " " + y);
-
-        if( isOver( x, y ) )
+        if( isOver( x, y ) && clicked )
         {
             callback.RestartGame();
         }
@@ -73,8 +70,9 @@ public class uiButton extends GameObject {
         g.fill(this.r, this.g, this.b);
         g.rect(x, y, width, height);
 
-        g.fill(255, 255, 255, 155);
-        g.text( text, x, y + ( height / 2 ));
+        g.fill(255, 255, 255, 255);
+        g.textAlign( CENTER, CENTER );
+        g.text( text, x + (width / 2), y + (height / 2));
     }
 
     /**

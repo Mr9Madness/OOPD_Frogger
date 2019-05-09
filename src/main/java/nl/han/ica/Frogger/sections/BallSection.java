@@ -21,11 +21,11 @@ public class BallSection extends Section {
     @Override
     public void spawnEntity() {
         float[] bounds = new float[2];
-        bounds[0] = 200 - size.y + 100;
-        bounds[1] = 200;
-        engine.addGameObject(new Ball(engine,240,2, bounds), engine.getView().getWorldWidth(),200);
-        engine.addGameObject(new Ball(engine,300,6, bounds), engine.getView().getWorldWidth(),150);
-        engine.addGameObject(new Ball(engine,300,4, bounds), engine.getView().getWorldWidth(),150);
+        bounds[0] = 150 - size.y + 100;
+        bounds[1] = 150;
+        engine.addGameObject(new Ball(engine,240,2, bounds), engine.getView().getWorldWidth(),150);
+        engine.addGameObject(new Ball(engine,300,6, bounds), engine.getView().getWorldWidth(),100);
+        engine.addGameObject(new Ball(engine,300,4, bounds), engine.getView().getWorldWidth(),50);
     }
 
     @Override

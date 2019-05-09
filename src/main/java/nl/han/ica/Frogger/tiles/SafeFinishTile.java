@@ -11,6 +11,7 @@ public class SafeFinishTile extends Tile
 
     public void Finish()
     {
+
         // Scherm laten zien dat speler heeft gewonnen als de juiste aantal kikker(s) op hun plek staan!
     }
 }
