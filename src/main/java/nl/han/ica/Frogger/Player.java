@@ -13,6 +13,7 @@ import nl.han.ica.OOPD_Engine.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPD_Engine.Objects.GameObject;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
+import processing.core.PApplet;
 
 import java.util.List;
 
@@ -84,7 +85,11 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         if( lives <= 0 ) engine.EndGame();
         gameMenu.UpdateScore( currentScore );
     }
-
+    private void jump (){
+        nextFrame();
+    //.rewind();
+    //popSound.play();
+}
     @Override
     public void keyPressed(int keyCode, char key) {
         System.out.println("Y: "+getY()+" / X:"+getX());
@@ -94,28 +99,30 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         {
   //          setDirectionSpeed(270, speed);
             setX(getX()-speed);
-            nextFrame();
+
+            jump();
         }
         else if (keyCode == engine.UP)
         {
 //            setDirectionSpeed(0, speed);
             //setDirection(0);
             setY(getY()-speed);
-            nextFrame();
+            jump();
         }
         else if (keyCode == engine.RIGHT)
         {
             //setDirectionSpeed(90, speed);
             //setDirection(90);
             setX(getX()+speed);
-            nextFrame();
+            jump();
         }
         else if (keyCode == engine.DOWN)
         {
             //setDirectionSpeed(180, speed);
             //setDirection(180);
             setY(getY()+speed);
-            nextFrame();
+
+            jump();
         }
     }
 
@@ -125,17 +132,22 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             if (ct instanceof Tree) { //hier komt het volg script}
                 isOnSafeObject =true;
                 setCurrentFrameIndex(0);
-                System.out.println("Locatie kikker: "+getX() + " / Boomstam:"+ct.getX()+" / getx-50: "+(getX()-50)+" / direction: "+ct.getDirection());
+                float direction = ct.getDirection();
                 //setX(getX()-50);
                 //setX(ct.getCenterX()-(getWidth()/2));
-                if ((getX()-50>=0) && getDirection()==90)
+                if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
-                    setX(getX()-50);
-                    System.out.println("ctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
+                    System.out.println("boomstam: "+(ct.getX()-ct.getxSpeed())+" / kikkker:"+(getX()-getWidth()));
+                    if (ct.getX()-ct.getxSpeed()<=(getX()-getWidth()))
+                        setX(getX()+ct.getxSpeed());
+                    //System.out.println("Locatie kikker voor: "+getX()+" / getxsp: "+ (getX()-ct.getxSpeed())+ "/ maxlinks:"+(ct.getX()-ct.getxSpeed())+" / getx-50: "+(getX()-50)+" getxspeedboomstam/ "+ct.getxSpeed()+" / direction: "+direction);
+                    //setX(getX()+ct.getxSpeed());
+                   // System.out.println("Locatie kikker na: "+getX()+" / Boomstam:"+ct.getX()+ct.getWidth()+" / getx-50: "+(getX()-50)+" / direction: "+direction);
+                    //System.out.println("lctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
 
                 }
-                else if (getX()-50<=0) {
-                    System.out.println("ctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
+                else if (getX()<=0 && getDirection()==270.0) {
+                    System.out.println("resetyctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
                     //setX(0);
                     //setY(getY()+50);
                     isOnSafeObject=false;

@@ -22,22 +22,19 @@ public class RiverSection extends Section {
 
     @Override
     public void spawnEntity() {
-        System.out.println("Direction " + pos + " / " + size + " / engine:" + engine.height + " / view:" + engine.getView().getWorldHeight());
+        System.out.println("River Direction " + pos + " / " + size + " / engine:" + engine.height + " / view:" + engine.getView().getWorldHeight());
 
+        engine.addGameObject(new Tree(engine, TreeSize.Big,270, 1), 60, 400); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 600, 400); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 900, 400); //LEFT
 
-        engine.addGameObject(new Tree(engine, TreeSize.Big,270, 1), 60, size.y - 800); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 600, size.y - 800); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 900, size.y - 800); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 60, 350); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 600, 350); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 900, 350); //LEFT
 
-        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 60, size.y - 850); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 600, size.y - 850); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 900, size.y - 850); //LEFT
-
-
-        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 60, size.y - 900); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 600, size.y - 900); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 900, size.y - 900); //LEFT
-
+        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 60, 300); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 600, 300); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 900, 300); //LEFT
     }
 
     @Override
