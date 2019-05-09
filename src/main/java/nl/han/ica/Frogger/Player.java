@@ -34,7 +34,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     private int countFrogsOnFinish = 0;
 
     /**
-     * Constructor
+     * Constructor waar de kikker afbeelding wordt meegegeven
      * @param engine Referentie naar de wereld
      */
     public Player(Frogger engine, MenuManager menuManager)
@@ -48,6 +48,10 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         setZ(25);
         setFriction(.5f);
     }
+
+    /**
+     * Deze functie regelt dat als de kikker iets raakt er een kikker wordt afgetrokken en de huidige kikker weer beneden in het scherm komt te staan
+     */
     private void onHit() {
         if (!isOnSafeObject && false) {
             gameMenu.RemoveLive(lives);
@@ -57,8 +61,15 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         }
     }
 
+    /**
+     * Player score wordt hier opgevraagd
+     * @return
+     */
     public int GetPlayerScore() { return currentScore; }
 
+    /**
+     * Deze methode zorgt ervoor dat de
+     */
     @Override
     public void update()
     {
@@ -88,12 +99,19 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         if( lives <= 0 ) engine.EndGame();
         gameMenu.UpdateScore( currentScore );
     }
+
     private void jump () {
         froggerJump.rewind();
         froggerJump.play();
 
         nextFrame();
     }
+
+    /**
+     * Als er op de plijtjestoetsen wordt gedrukt, zal deze methode ervoor zorgen dat de kikker een andere positie krijgt toegewezen
+     * @param keyCode Vraagt de toetscode op
+     * @param key vraagt de toets op
+     */
     @Override
     public void keyPressed(int keyCode, char key) {
         System.out.println("Y: "+getY()+" / X:"+getX());
@@ -130,19 +148,22 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         }
     }
 
+    /**
+     * Zorgt ervoor dat als de kikker een object geraakt wordt er een object er een actie wordt gedaan.
+     * Een actie is op de boom meedrijven
+     * Of zorgen dat de kikker "af" is.
+     * @param collidedGameObjects
+     */
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject ct : collidedGameObjects) {
-            if (ct instanceof Tree) { //hier komt het volg script}
+            if (ct instanceof Tree) {
                 isOnSafeObject =true;
                 setCurrentFrameIndex(0);
 
-                //setX(getX()-50);
-                //setX(ct.getCenterX()-(getWidth()/2));
                 if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
                     System.out.println("Boomstam: "+(ct.getX()-getWidth())+" kikker: "+getWidth());
-                   //if (ct.getX()-getWidth() >= getX())
                         setX(getX()+ct.getxSpeed());
                 }
                 else if (getX()<=0 && getDirection()==270.0) {
@@ -153,7 +174,6 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 else if ((getX()<=750) && (ct.getDirection()==90.0)) //right
                 {
                     System.out.println("rechtstyctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
-                    //if (ct.getX()-getWidth() >= getX())
                     setX(getX()+ct.getxSpeed());
                 }
                 else if ((getX()>=750) && (ct.getDirection()==90.0)) //right
@@ -161,31 +181,33 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                     setY(getY()+50);
                     isOnSafeObject=false;
                 }
-                }
-            } else {
+            }
+        else {
                 isOnSafeObject =false;
                 onHit();
             }
         }
     }
 
+    /**
+     * Draagt zorg voor de bosting van de tiles, waar dan ook weer acties ontstaan zoals
+     * alleen in een inham bij de finish kan de kikker komem
+     * bij de watertile isn de kikker af.
+     * @param collidedTiles Dit zijn alle tiles die botsen met de kikker
+     */
     @Override
     public void tileCollisionOccurred(List<CollidedTile> collidedTiles)  {
 
         for (CollidedTile ct : collidedTiles)
         {
-            // Kijkt alleen naar een finish tile en als die in (inside) de tile is wordt de finish method uitgevoerd
             if (ct.theTile instanceof FinishTile)
             {
-                //((FinishTile) ct.theTile).Finish();
                 setY(Y+50);
             }
             else if (ct.theTile instanceof SafeFinishTile)
             {
                 ((SafeFinishTile) ct.theTile).Finish();
                 countFrogsOnFinish  = countFrogsOnFinish++;
-                // Actuele X en Y positie van de kikker pakken wanneer hij in de SafeFinishTile is, en in de huidige SafefinishTile een kikker neerzetten
-                // Vervolgens de positie van de huidige kikker weer terugzetten naar 0
             }
             else if( ct.theTile instanceof WaterTile)
             {
