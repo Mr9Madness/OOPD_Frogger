@@ -27,10 +27,9 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     private final GameMenu gameMenu;
     private int currentScore = 0;
     private boolean isOnSafeObject = false;
-    private boolean keyIsPressed = false;
 
     private int lives = 5;
-    private int countOnFinish = 0;
+    private int countFrogsOnFinish = 0;
 
     /**
      * Constructor
@@ -86,25 +85,16 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         gameMenu.UpdateScore( currentScore );
     }
 
-//    @Override
-//    public void keyReleased()
-//    {
-//        keyIsPressed = false;
-//    }
-
     @Override
     public void keyPressed(int keyCode, char key) {
         System.out.println("Y: "+getY()+" / X:"+getX());
         final int speed = 50;
-//        if (keyIsPressed)
-//            return;
 
         if (keyCode == engine.LEFT)
         {
   //          setDirectionSpeed(270, speed);
             setX(getX()-speed);
             nextFrame();
-            keyIsPressed = true;
         }
         else if (keyCode == engine.UP)
         {
@@ -112,7 +102,6 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             //setDirection(0);
             setY(getY()-speed);
             nextFrame();
-            keyIsPressed = true;
         }
         else if (keyCode == engine.RIGHT)
         {
@@ -120,7 +109,6 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             //setDirection(90);
             setX(getX()+speed);
             nextFrame();
-            keyIsPressed = true;
         }
         else if (keyCode == engine.DOWN)
         {
@@ -128,7 +116,6 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             //setDirection(180);
             setY(getY()+speed);
             nextFrame();
-            keyIsPressed = true;
         }
     }
 
@@ -174,7 +161,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             else if (ct.theTile instanceof SafeFinishTile)
             {
                 ((SafeFinishTile) ct.theTile).Finish();
-                countOnFinish ++;
+                countFrogsOnFinish  = countFrogsOnFinish++;
                 // Actuele X en Y positie van de kikker pakken wanneer hij in de SafeFinishTile is, en in de huidige SafefinishTile een kikker neerzetten
                 // Vervolgens de positie van de huidige kikker weer terugzetten naar 0
             }

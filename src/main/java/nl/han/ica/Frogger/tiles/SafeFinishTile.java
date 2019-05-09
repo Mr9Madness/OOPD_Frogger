@@ -11,6 +11,6 @@ public class SafeFinishTile extends Tile
 
     public void Finish()
     {
-        // Scherm laten zien dat speler heeft gewonnen als er 3 frogs op hun plek staan!
+        // Scherm laten zien dat speler heeft gewonnen als de juiste aantal kikker(s) op hun plek staan!
     }
 }
