@@ -85,7 +85,11 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         if( lives <= 0 ) engine.EndGame();
         gameMenu.UpdateScore( currentScore );
     }
-
+    private void jump {
+    nextFrame();
+    .rewind();
+    popSound.play();
+}
     @Override
     public void keyPressed(int keyCode, char key) {
         System.out.println("Y: "+getY()+" / X:"+getX());
@@ -95,6 +99,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         {
   //          setDirectionSpeed(270, speed);
             setX(getX()-speed);
+
             nextFrame();
         }
         else if (keyCode == engine.UP)

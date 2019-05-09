@@ -4,6 +4,7 @@ import nl.han.ica.Frogger.Menus.MenuManager;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.View.CenterFollowingViewport;
 import nl.han.ica.OOPD_Engine.View.View;
+import nl.han.ica.OOPD_Engine.Sound.Sound;
 import processing.core.PApplet;
 
 @SuppressWarnings("serial")
@@ -12,12 +13,26 @@ public class Frogger extends GameEngine
     private Player frog;
     private Map map;
     private MenuManager menuManager;
+    private Sound backgroundSound,frogWinSound,frogSplashSound,frogHopSound,gameOverSound,froggerFlatSound;
 
     private int worldWidth = 900;
     private int worldHeight = 1200;
 
     public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.Frogger.Frogger"});
+    }
+
+    /**
+     * Initialiseert geluid
+     */
+    private void initializeSound() {
+        backgroundSound = new Sound(this, "src/main/assets/music/Background.mp3");
+        backgroundSound.loop(-1);
+        frogWinSound = new Sound(this, "src/main/assets/music/yehaw.mp3");
+        frogSplashSound = new Sound(this, "src/main/assets/music/frogger-splash.wav");
+        frogHopSound = new Sound(this, "src/main/assets/music/frogger-hop.wav");
+        froggerFlatSound = new Sound(this, "src/main/assets/music/carscreechstop.wav");
+        gameOverSound = new Sound(this, "src/main/assets/music/gameover.mp3");
     }
 
     /**
@@ -28,6 +43,8 @@ public class Frogger extends GameEngine
     {
         int screenWidth = 800;
         int screenHeight = 1200;
+
+        initializeSound();
 
         menuManager = new MenuManager(this, screenWidth, screenHeight, true); // TODO: Verander ingame naar false zodra het main menu menu bestaat
         createObjects(screenWidth, screenHeight);
