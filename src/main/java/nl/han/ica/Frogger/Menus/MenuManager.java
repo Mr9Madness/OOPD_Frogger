@@ -43,6 +43,17 @@ public class MenuManager
         engine.addDashboard( currentMenu );
 
     }
+    public void ShowGameWon( Player player)
+    {
+        this.isGamePlaying = false;
+        engine.deleteDashboard( currentMenu );
+
+        currentMenu = new GameWonMenu( engine, currentMenu.getWidth(), currentMenu.getHeight(), player );
+
+        engine.addDashboard( currentMenu );
+
+    }
+
     public void ShowGameOver( Player player)
     {
         this.isGamePlaying = false;

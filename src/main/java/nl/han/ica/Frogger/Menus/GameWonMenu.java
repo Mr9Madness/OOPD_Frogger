@@ -14,23 +14,25 @@ import nl.han.ica.OOPD_Engine.Objects.TextObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GameOverMenu extends Dashboard {
+public class GameWonMenu extends Dashboard {
     private Map<String, GameObject> menuObjects = new HashMap<>();
     private GameEngine engine;
 
 
-    public GameOverMenu(GameEngine engine, float worldWidth, float worldHeight, Player player)
+    public GameWonMenu(GameEngine engine, float worldWidth, float worldHeight, Player player)
     {
         super(0, 0, worldWidth, worldHeight);
         this.engine = engine;
 
-        AddGameObject( "Background", new uiObject( 200, 150, 400, 350,255,69,57,255), 200, 150);
+        AddGameObject( "Background", new uiObject( 200, 150, 400, 350,30,255,123,255), 200, 150);
 
-        AddGameObject( "GameOverTitle", new TextObject( "Game over", 20 ), 250, 175 );
+        AddGameObject( "GameOverTitle", new TextObject( "Gewonnen", 20 ), 250, 175 );
 
-        AddGameObject( "GaveOverImage", new uiSpriteObject( new Sprite("src/main/assets/sprites/GameOver216.jpg")), 275, 225 );
+        AddGameObject( "FinalPlayerScore", new TextObject( "Score: " + player.GetPlayerScore(), 20 ), 250, 210 );
 
-        AddGameObject( "GaveOverButton", new uiButton( 250, 450, 115, 35, "Restart", 70,5,3,255, (Frogger)engine));
+        AddGameObject( "GameOverImage", new uiSpriteObject( new Sprite("src/main/assets/sprites/Gewonnen216.jpg")), 275, 225 );
+
+        AddGameObject( "GameOverButton", new uiButton( 250, 450, 115, 35, " Restart", 5,67,31,255, (Frogger)engine));
     }
     private void AddGameObject(String key, GameObject object )
     {

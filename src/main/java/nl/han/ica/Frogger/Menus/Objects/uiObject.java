@@ -12,7 +12,7 @@ public class uiObject extends GameObject {
     private float x1, y1, x2, y2 = 0;
 
     /**
-     * Create a new generic UI Object.
+     * Create a new generic UI Object with a background.
      */
     public uiObject(float x1, float y1, float x2, float y2, int r, int g, int b, int alpha)
     {
@@ -41,8 +41,9 @@ public class uiObject extends GameObject {
     @Override
     public void draw(PGraphics g)
     {
-        g.background(this.r, this.g, this.b, this.alpha);
-        g.color(r, this.g, b);
+        g.background(0, 0, 0, 155);
+
+        g.fill(this.r, this.g, this.b);
         g.rect(x1, y1, x2, y2);
     }
 
