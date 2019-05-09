@@ -13,7 +13,7 @@ import nl.han.ica.OOPD_Engine.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPD_Engine.Objects.GameObject;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
-import processing.core.PApplet;
+import nl.han.ica.OOPD_Engine.Sound.Sound;
 
 import java.util.List;
 
@@ -28,6 +28,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     private final GameMenu gameMenu;
     private int currentScore = 0;
     private boolean isOnSafeObject = false;
+    private Sound froggerJump;
 
     private int lives = 5;
     private int countFrogsOnFinish = 0;
@@ -41,6 +42,8 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         super(new Sprite("src/main/assets/sprites/Frogger.png"), 7);
         this.engine = engine;
         this.gameMenu = ((GameMenu)menuManager.GetCurrentMenu());
+
+        froggerJump = new Sound(engine, "src/main/assets/music/frogger-hop.wav");
         setCurrentFrameIndex(0);
         setZ(25);
         setFriction(.5f);
@@ -85,11 +88,12 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         if( lives <= 0 ) engine.EndGame();
         gameMenu.UpdateScore( currentScore );
     }
-    private void jump (){
+    private void jump () {
+        froggerJump.rewind();
+        froggerJump.play();
+
         nextFrame();
-    //.rewind();
-    //popSound.play();
-}
+    }
     @Override
     public void keyPressed(int keyCode, char key) {
         System.out.println("Y: "+getY()+" / X:"+getX());
@@ -138,7 +142,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
                     System.out.println("boomstam: "+(ct.getX()-ct.getxSpeed())+" / kikkker:"+(getX()-getWidth()));
-                    if (ct.getX()-ct.getxSpeed()<=(getX()-getWidth()))
+                   // if (ct.getX()-ct.getxSpeed()<=(getX()-getWidth()))
                         setX(getX()+ct.getxSpeed());
                     //System.out.println("Locatie kikker voor: "+getX()+" / getxsp: "+ (getX()-ct.getxSpeed())+ "/ maxlinks:"+(ct.getX()-ct.getxSpeed())+" / getx-50: "+(getX()-50)+" getxspeedboomstam/ "+ct.getxSpeed()+" / direction: "+direction);
                     //setX(getX()+ct.getxSpeed());

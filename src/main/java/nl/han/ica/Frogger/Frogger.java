@@ -30,7 +30,7 @@ public class Frogger extends GameEngine
         backgroundSound.loop(-1);
         frogWinSound = new Sound(this, "src/main/assets/music/yehaw.mp3");
         frogSplashSound = new Sound(this, "src/main/assets/music/frogger-splash.wav");
-        frogHopSound = new Sound(this, "src/main/assets/music/frogger-hop.wav");
+
         froggerFlatSound = new Sound(this, "src/main/assets/music/carscreechstop.wav");
         gameOverSound = new Sound(this, "src/main/assets/music/gameover.mp3");
     }
