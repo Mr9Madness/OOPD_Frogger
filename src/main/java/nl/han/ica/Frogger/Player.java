@@ -44,7 +44,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         setFriction(.5f);
     }
     private void onHit() {
-        if (!isOnSafeObject) {
+        if (!isOnSafeObject && false) {
             gameMenu.RemoveLive(lives);
             lives--;
             System.out.println("you have " + lives + " frogs now!");
@@ -122,11 +122,20 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         for (GameObject ct : collidedGameObjects) {
             if (ct instanceof Tree) { //hierkomt het volg script}
                 isOnSafeObject =true;
+                setCurrentFrameIndex(0);
+                System.out.println("Locatie kikker: "+getX() + " / Boomstam:"+ct.getX()+" / getx-50: "+(getX()-50)+" / direction: "+ct.getDirection());
+                //setX(getX()-50);
+                //setX(ct.getCenterX()-(getWidth()/2));
+                if ((getX()-50>=0) && getDirection()==90)
+                {
+                    setX(getX()-50);
+                    System.out.println("ctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
 
-                setX(ct.getCenterX()-(getWidth()/2));
-                if (getX()<=0) {
-                    setX(0);
-                    setY(getY()+50);
+                }
+                else if (getX()-50<=0) {
+                    System.out.println("ctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
+                    //setX(0);
+                    //setY(getY()+50);
                     isOnSafeObject=false;
                 }
             } else {
