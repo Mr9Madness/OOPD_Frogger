@@ -13,6 +13,9 @@ public class Frogger extends GameEngine
     private Map map;
     private MenuManager menuManager;
 
+    private int worldWidth = 900;
+    private int worldHeight = 1200;
+
     public static void main(String[] args) {
         PApplet.main(new String[]{"nl.han.ica.Frogger.Frogger"});
     }
@@ -25,14 +28,19 @@ public class Frogger extends GameEngine
     {
         int screenWidth = 800;
         int screenHeight = 1200;
-        int worldWidth = 900;
-        int worldHeight = 1200;
+
         menuManager = new MenuManager(this, screenWidth, screenHeight, true); // TODO: Verander ingame naar false zodra het main menu menu bestaat
         createObjects(screenWidth, screenHeight);
 
         initView(screenWidth, screenHeight, worldWidth, worldHeight);
 
         map = new Map(this);
+    }
+
+    public void RestartGame()
+    {
+        menuManager.StartGame();
+        createObjects(worldWidth, worldHeight);
     }
 
     void EndGame()
@@ -61,7 +69,7 @@ public class Frogger extends GameEngine
     private void createObjects(int worldWidth, int worldHeight)
     {
         frog = new Player(this, menuManager);
-        addGameObject(frog, worldWidth / 2, 100000);
+        addGameObject(frog, worldWidth / 2, worldHeight);
     }
 
     @Override
