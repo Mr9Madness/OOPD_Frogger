@@ -2,8 +2,6 @@ package nl.han.ica.Frogger.sections;
 
 import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.Frogger.Objects.RoadObjects.Car;
-import nl.han.ica.Frogger.Objects.RoadObjects.FireCar;
-import nl.han.ica.Frogger.Objects.RoadObjects.Truck;
 import processing.core.PVector;
 
 public class RoadSection extends Section {
@@ -54,5 +52,5 @@ public class RoadSection extends Section {
     }
 
     @Override
-    public void setSize() { this.size = new PVector(tileSection[0].length * 50, tileSection.length * 50);}
+    public void setSize() { this.size = new PVector(tileSection[0].length * 50, (tileSection.length + 1) * 50);}
 }

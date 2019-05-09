@@ -20,14 +20,14 @@ public class BallSection extends Section {
 
     @Override
     public void spawnEntity() {
-
-        System.out.println(pos);
-        System.out.println(size);
-        System.out.println( "X: " + engine.getView().getWorldWidth() + " | Y: " + (engine.getView().getWorldHeight() + pos.y + size.y)  );
-        engine.addGameObject(new Ball(engine,270,1), engine.getView().getWorldWidth(),engine.getView().getWorldHeight() + pos.y + size.y);
-
+        float[] bounds = new float[2];
+        bounds[0] = 200 - size.y + 100;
+        bounds[1] = 200;
+        engine.addGameObject(new Ball(engine,240,2, bounds), engine.getView().getWorldWidth(),200);
+        engine.addGameObject(new Ball(engine,300,6, bounds), engine.getView().getWorldWidth(),150);
+        engine.addGameObject(new Ball(engine,300,4, bounds), engine.getView().getWorldWidth(),150);
     }
 
     @Override
-    public void setSize() { this.size = new PVector(tileSection[0].length * 50, tileSection.length * 50);}
+    public void setSize() { this.size = new PVector(tileSection[0].length * 50, (tileSection.length + 1) * 50 );}
 }

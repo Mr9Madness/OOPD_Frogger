@@ -13,11 +13,12 @@ public abstract class Section {
     protected int[][] tileSection = {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
     };
-
+    protected boolean loadSafeLine;
 
     public Section(GameEngine engine, boolean loadSafeLine)
     {
         this.engine = engine;
+        this.loadSafeLine = loadSafeLine;
 
         if( loadSafeLine ) engine.getTileMap().setTileMap(appendTileMap(tileSection));
         else engine.getTileMap().setTileMap(appendTileMap(tileSection));

@@ -41,5 +41,5 @@ public class RiverSection extends Section {
     }
 
     @Override
-    public void setSize() { this.size = new PVector(tileSection[0].length * 50, tileSection.length * 50);}
+    public void setSize() { this.size = new PVector(tileSection[0].length * 50, (tileSection.length + 1) * 50);}
 }
