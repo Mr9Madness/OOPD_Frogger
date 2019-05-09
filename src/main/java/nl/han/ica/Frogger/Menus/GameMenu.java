@@ -17,7 +17,9 @@ public class GameMenu extends Dashboard {
         super(0, 0, worldWidth, worldHeight);
 
         AddLives( 5 );
-        AddGameObject( "Score", new TextObject("Score: 0", 15), 25, 50 );
+        TextObject scoreText = new TextObject("Score: 0", 15);
+        scoreText.setForeColor(255,255,255,95);
+        AddGameObject( "Score", scoreText, 25, 50 );
     }
 
     private void AddGameObject( String key, GameObject object, int x, int y )

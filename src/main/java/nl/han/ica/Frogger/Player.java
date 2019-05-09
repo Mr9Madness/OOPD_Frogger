@@ -141,8 +141,8 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 //setX(ct.getCenterX()-(getWidth()/2));
                 if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
-                    System.out.println("boomstam: "+(ct.getX()-ct.getxSpeed())+" / kikkker:"+(getX()-getWidth()));
-                   // if (ct.getX()-ct.getxSpeed()<=(getX()-getWidth()))
+                    System.out.println("Boomstam: "+(ct.getX()-getWidth())+" kikker: "+getWidth());
+                   if (ct.getX()-getWidth() >= getX())
                         setX(getX()+ct.getxSpeed());
                     //System.out.println("Locatie kikker voor: "+getX()+" / getxsp: "+ (getX()-ct.getxSpeed())+ "/ maxlinks:"+(ct.getX()-ct.getxSpeed())+" / getx-50: "+(getX()-50)+" getxspeedboomstam/ "+ct.getxSpeed()+" / direction: "+direction);
                     //setX(getX()+ct.getxSpeed());
@@ -153,8 +153,12 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 else if (getX()<=0 && getDirection()==270.0) {
                     System.out.println("resetyctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
                     //setX(0);
-                    //setY(getY()+50);
+                    setY(getY()+50);
                     isOnSafeObject=false;
+                }
+                else if ((getX()>=0) && (ct.getDirection()==270.0)) //right
+                {
+
                 }
             } else {
                 isOnSafeObject =false;
