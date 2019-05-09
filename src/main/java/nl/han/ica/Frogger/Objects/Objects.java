@@ -1,6 +1,7 @@
 package nl.han.ica.Frogger.Objects;
 
 import nl.han.ica.Frogger.Frogger;
+import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 import nl.han.ica.OOPD_Engine.Objects.GameObject;
@@ -8,7 +9,7 @@ import nl.han.ica.OOPD_Engine.Objects.SpriteObject;
 
 public class Objects extends SpriteObject {
 
-    private final Frogger engine;
+    private final GameEngine engine;
     /**
      * The main object method, this also handles the updating of the objects
      *
@@ -17,7 +18,7 @@ public class Objects extends SpriteObject {
      * @param direction The direction the object is traveling
      * @param speed The speed the object is traveling
      **/
-    public Objects(Frogger engine,Sprite sprite, float direction, float speed) {
+    public Objects(GameEngine engine, Sprite sprite, float direction, float speed) {
         super(sprite);
         this.engine = engine;
         setDirectionSpeed(direction, speed);

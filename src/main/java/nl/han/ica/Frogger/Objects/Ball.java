@@ -2,10 +2,11 @@ package nl.han.ica.Frogger.Objects;
 
 import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.Frogger.Objects.Objects;
+import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 
 public class Ball extends Objects {
-    private final Frogger engine;
+    private final GameEngine engine;
 
     /**
      * The Ball Object
@@ -14,8 +15,8 @@ public class Ball extends Objects {
      * @param direction The direction the object is traveling
      * @param speed The speed the object is traveling
      */
-    public Ball(Frogger engine, float direction, float speed) {
-        super(engine, new Sprite("src/main/assets/sprites/Ball.png"), direction, speed);
+    public Ball(GameEngine engine, float direction, float speed) {
+        super(engine, new Sprite("src/main/assets/obstacles/Ball.png"), direction, speed);
         //super(new Sprite("src/main/assets/sprites/Ball.png"), 2);
         this.engine = engine;
         setDirectionSpeed(direction, speed);
