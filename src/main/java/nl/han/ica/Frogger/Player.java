@@ -13,6 +13,7 @@ import nl.han.ica.OOPD_Engine.Collision.ICollidableWithTiles;
 import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPD_Engine.Objects.GameObject;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
+import processing.core.PApplet;
 
 import java.util.List;
 
@@ -138,17 +139,18 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             if (ct instanceof Tree) { //hier komt het volg script}
                 isOnSafeObject =true;
                 setCurrentFrameIndex(0);
-                System.out.println("Locatie kikker: "+getX() + " / Boomstam:"+ct.getX()+" / getx-50: "+(getX()-50)+" / direction: "+ct.getDirection());
+                float direction = ct.getDirection();
                 //setX(getX()-50);
                 //setX(ct.getCenterX()-(getWidth()/2));
-                if ((getX()-50>=0) && getDirection()==90)
+                if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
                     setX(getX()-50);
-                    System.out.println("ctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
+                    System.out.println("Locatie kikker: "+getX()+" / Boomstam:"+ct.getX()+" / getx-50: "+(getX()-50)+" / direction: "+direction);
+                    System.out.println("lctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
 
                 }
-                else if (getX()-50<=0) {
-                    System.out.println("ctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
+                else if (getX()<=0 && getDirection()==270.0) {
+                    System.out.println("resetyctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
                     //setX(0);
                     //setY(getY()+50);
                     isOnSafeObject=false;
