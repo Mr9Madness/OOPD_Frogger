@@ -18,6 +18,11 @@ public abstract class Section {
     };
     protected boolean loadSafeLine;
 
+    /**
+     * Zorgt voor de sectie wordt toegevoegd aan de tilemap en gespeeld kan worden
+     * @param engine is de Gameengine van de Frogger, wordt gebruikt om de tilemap te veranderen
+     * @param loadSafeLine Als deze true is voegt hij een extra safeline toe aan het begin van de section
+     */
     public Section(GameEngine engine, boolean loadSafeLine)
     {
         this.engine = engine;
@@ -26,12 +31,16 @@ public abstract class Section {
         if( loadSafeLine ) engine.getTileMap().setTileMap(appendTileMap(tileSection));
     }
 
+    /**
+     * Zorgt voor de sectie wordt toegevoegd aan de tilemap en gespeeld kan worden, met default een safeline
+     * @param engine is de Gameengine van de Frogger, wordt gebruikt om de tilemap te veranderen
+     */
     public Section(GameEngine engine)
     {
         this(engine, true);
     }
 
-    protected int[][] appendTileMap( int[][] appendingSection )
+    int[][] appendTileMap( int[][] appendingSection )
     {
         int[][] tilemap = engine.getTileMap().getTileMap();
 
@@ -43,15 +52,31 @@ public abstract class Section {
         }
         return newTileMap;
     }
+
+    /**
+     * Zorgt ervoor dat alle benodigde obstakels voor die section gespawnd worden
+     */
     public abstract void spawnEntity();
 
+    /**
+     * Pakt de grootte van de section
+     */
     public PVector getSize() {
         return size;
     }
 
     public abstract void setSize();
+
+    /**
+     * Veranderd de size en wordt meegegeven
+     * @param size geeft de size terug
+     */
     public void setSize( PVector size) { this.size = size;}
 
+    /**
+     *
+     * @return
+     */
     public PVector getPos() {
         return pos;
     }

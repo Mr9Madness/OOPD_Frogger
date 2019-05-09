@@ -48,6 +48,12 @@ public class uiButton extends GameObject {
         return mX > this.x && mX < this.x + this.width && mY > this.y && mY < this.y + this.height;
     }
 
+    /**
+     * Checks if the mouse on over this button and if clicked is true executes given function
+     * @param x Vertical position of the mouse
+     * @param y Horizontal position of the mouse
+     * @param clicked True if mouse is pressed
+     */
     public void mouseUpdate(float x, float y, boolean clicked)
     {
         if( isOver( x, y ) && clicked )
@@ -56,10 +62,11 @@ public class uiButton extends GameObject {
         }
     }
 
+    /**
+     * Update loop activated by gameobject
+     */
     @Override
-    public void update() {
-
-    }
+    public void update() { }
 
     /**
      * Draws a background on the PGraphics object, this is fired by the GameEngine.

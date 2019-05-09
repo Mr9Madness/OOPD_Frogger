@@ -16,7 +16,12 @@ import java.util.Map;
 public class GameMenu extends Dashboard {
     private Map<String, GameObject> menuObjects = new HashMap<>();
 
-    public GameMenu( float worldWidth, float worldHeight )
+    /**
+     * Constructs a dashboard with ui object for a running game
+     * @param worldWidth Width of the game world
+     * @param worldHeight Height of the game world
+     */
+    GameMenu( float worldWidth, float worldHeight )
     {
         super(0, 0, worldWidth, worldHeight);
 
@@ -32,17 +37,29 @@ public class GameMenu extends Dashboard {
         addGameObject( object, x, y );
     }
 
+    /**
+     * Add an amount of lives to the game menu
+     * @param amount Amount to be added
+     */
     private void AddLives(int amount)
     {
         for (int i = 1; i <= amount; i++)
             AddGameObject( "PlayerLife" + i, new uiSpriteObject( new Sprite( "src/main/assets/sprites/LittleFrogger.png" ) ), (25 * i - 1) + (5 * i - 1), 10 );
     }
 
+    /**
+     * Public access method to update the score on the game screen
+     * @param score The score needed to be displayed
+     */
     public void UpdateScore( int score )
     {
         ( ( TextObject )menuObjects.get( "Score" ) ).setText("Score: " + score);
     }
 
+    /**
+     * Public access method to update amount of lives being displayed on the game screen
+     * @param index Index of the live needing to be removed
+     */
     public void RemoveLive( int index)
     {
         deleteGameObject(menuObjects.get( "PlayerLife" + index ));

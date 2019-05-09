@@ -12,7 +12,7 @@ public class uiObject extends GameObject {
     private float x1, y1, x2, y2 = 0;
 
     /**
-     * Create a new generic UI Object.
+     * Create a new generic UI Object with a background.
      */
     public uiObject(float x1, float y1, float x2, float y2, int r, int g, int b, int alpha)
     {

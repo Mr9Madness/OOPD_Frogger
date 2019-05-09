@@ -13,7 +13,6 @@ public class RoadObjects extends Objects {
      * RoadObjects
      *
      * @param engine The engine used, needed to determine the worldsize
-     * @param totalFrames The number of frames the object has
      * @param direction The direction the object is traveling
      * @param speed The speed the object is traveling
      **/

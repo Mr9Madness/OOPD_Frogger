@@ -1,10 +1,7 @@
 package nl.han.ica.Frogger.Objects;
 
-import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
-import nl.han.ica.OOPD_Engine.Objects.AnimatedSpriteObject;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
-import nl.han.ica.OOPD_Engine.Objects.GameObject;
 import nl.han.ica.OOPD_Engine.Objects.SpriteObject;
 
 public class Objects extends SpriteObject {
@@ -24,35 +21,13 @@ public class Objects extends SpriteObject {
         setDirectionSpeed(direction, speed);
     }
 
-    public boolean test(){
-        System.out.println(this.engine.getGameObjectItems().size()+" / test Direction "+this.getDirection()+ " / X: "+this.getX()+"/"+engine.width+" / Y:"+y+"/"+engine.getView().getWorldHeight());
-        for (int i=0; (i < this.engine.getGameObjectItems().size()); i++){
-            GameObject goTest = this.engine.getGameObjectItems().elementAt(i);
-            System.out.println("Check["+i+"]: "+goTest.getX()+"/"+getX()+" en "+goTest.getY()+"/"+getY()+" / Direction: "+goTest.getDirection());
-            if (goTest.getX()==x && goTest.getY()==y) {
-                    System.out.println("Dubbel met "+i+" op X:"+x+" / Y:"+y);
-                    //engine.deleteGameObject();
-            }
-        }
-
-        return true;
-    }
-
+    /**
+     * Deze Methode zorgt ervoor dat de objecten wanneer ze uit het scherm gaan weer aan de andere kant worden getoond.
+     */
     @Override
     public void update() {
-        //engine.pauseGame();
-
-
-
-      //  System.out.println("Direction "+getDirection()+ " / X: "+getX()+"/"+engine.width+" / Y:"+y+"/"+engine.getView().getWorldHeight());
-
-        //System.out.println("section "+getPrevX());
-        if (getDirection() == 0 && (getY() + getHeight()) >= engine.height) // UP
-            setY(0-getHeight());
         if (getDirection() == 90 && (getX() + getWidth()) >= engine.width+getWidth()) // RIGHT
             setX(0-getWidth());
-        if (getDirection() == 180 && (getY() + getHeight()) >= engine.height) // DOWN
-            setY(engine.width+getHeight());
         if (getDirection() == 270 && (getX() + getWidth()) <= 0-getWidth()) // LEFT
             setX(engine.width);
     }
