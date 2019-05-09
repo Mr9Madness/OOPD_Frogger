@@ -52,6 +52,9 @@ public class Frogger extends GameEngine
 
     public void FinishGame()
     {
+        froggerWIN.rewind();
+        froggerWIN.play();
+        backgroundSound.pause();
         menuManager.ShowGameWon(frog);
         deleteGameObject(frog);
         frog = null;
@@ -60,6 +63,8 @@ public class Frogger extends GameEngine
 
     public void RestartGame()
     {
+        froggerLoose.play();
+        backgroundSound.play();
         menuManager.StartGame();
         createObjects(worldWidth, worldHeight);
 
@@ -70,6 +75,7 @@ public class Frogger extends GameEngine
 
     void EndGame()
     {
+        backgroundSound.pause();
         froggerLoose.rewind();
         froggerLoose.play();
         menuManager.ShowGameOver(frog);

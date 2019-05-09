@@ -3,6 +3,7 @@ package nl.han.ica.Frogger;
 import nl.han.ica.Frogger.Menus.GameMenu;
 import nl.han.ica.Frogger.Menus.MenuManager;
 import nl.han.ica.Frogger.Objects.RiverObjects.Tree;
+import nl.han.ica.Frogger.Objects.RoadObjects.RoadObjects;
 import nl.han.ica.Frogger.tiles.FinishTile;
 import nl.han.ica.Frogger.tiles.SafeFinishTile;
 import nl.han.ica.Frogger.tiles.WaterTile;
