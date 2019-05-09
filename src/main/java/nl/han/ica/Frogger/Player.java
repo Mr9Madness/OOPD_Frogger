@@ -193,7 +193,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 // Actuele X en Y positie van de kikker pakken wanneer hij in de SafeFinishTile is, en in de huidige SafefinishTile een kikker neerzetten
                 // Vervolgens de positie van de huidige kikker weer terugzetten naar 0
             }
-            else if( ct.theTile instanceof WaterTile)
+            else if( ct.theTile instanceof WaterTile && !isOnSafeObject)
             {
                 froggerSplash.rewind();
                 froggerSplash.play();
