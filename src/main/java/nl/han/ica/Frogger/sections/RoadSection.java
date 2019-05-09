@@ -4,6 +4,7 @@ import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.Frogger.Objects.RoadObjects.Car;
 import nl.han.ica.Frogger.Objects.RoadObjects.FireCar;
 import nl.han.ica.Frogger.Objects.RoadObjects.Truck;
+import processing.core.PVector;
 
 public class RoadSection extends Section {
     private final Frogger engine;
@@ -24,7 +25,6 @@ public class RoadSection extends Section {
     public void spawnEntity()
     {
         System.out.println("Direction " + pos + " / " + size+ " / engine:"+engine.height+" / view:"+engine.getView().getWorldHeight());
-
 
         engine.addGameObject(new Car(engine,270,1),60,600); //LEFT
         engine.addGameObject(new Car(engine,270,1),200,600); //LEFT
@@ -52,4 +52,7 @@ public class RoadSection extends Section {
 
       //  engine.addGameObject(new Car(engine,180,180),30,engine.height);
     }
+
+    @Override
+    public void setSize() { this.size = new PVector(tileSection[0].length * 50, tileSection.length * 50);}
 }

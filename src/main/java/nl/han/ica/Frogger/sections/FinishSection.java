@@ -19,4 +19,7 @@ public class FinishSection extends Section {
     public void spawnEntity() {
 
     }
+
+    @Override
+    public void setSize() { this.size = new PVector(tileSection[0].length * 50, tileSection.length * 50);}
 }

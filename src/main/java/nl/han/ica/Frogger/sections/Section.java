@@ -45,7 +45,8 @@ public abstract class Section {
     public PVector getSize() {
         return size;
     }
-    public void setSize() { this.size = new PVector(tileSection.length * 50, tileSection[0].length * 50);}
+
+    public abstract void setSize();
     public void setSize( PVector size) { this.size = size;}
 
     public PVector getPos() {

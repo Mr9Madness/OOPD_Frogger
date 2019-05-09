@@ -3,6 +3,7 @@ package nl.han.ica.Frogger.sections;
 import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.Frogger.Objects.RiverObjects.Tree;
 import nl.han.ica.Frogger.Objects.RiverObjects.TreeSize;
+import processing.core.PVector;
 
 public class RiverSection extends Section {
     private final Frogger engine;
@@ -38,4 +39,7 @@ public class RiverSection extends Section {
         engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 900, size.y - 900); //LEFT
 
     }
+
+    @Override
+    public void setSize() { this.size = new PVector(tileSection[0].length * 50, tileSection.length * 50);}
 }
