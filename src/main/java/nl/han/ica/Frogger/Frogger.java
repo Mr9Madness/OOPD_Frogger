@@ -13,7 +13,7 @@ public class Frogger extends GameEngine
     private Player frog;
     private Map map;
     private MenuManager menuManager;
-    private Sound backgroundSound,frogWinSound,frogSplashSound,frogHopSound,gameOverSound,froggerFlatSound;
+    private Sound backgroundSound,froggerWIN, froggerLoose;
 
     private int worldWidth = 900;
     private int worldHeight = 1200;
@@ -28,12 +28,8 @@ public class Frogger extends GameEngine
     private void initializeSound() {
         backgroundSound = new Sound(this, "src/main/assets/music/Background.mp3");
         backgroundSound.loop(-1);
-        frogWinSound = new Sound(this, "src/main/assets/music/yehaw.mp3");
-        frogSplashSound = new Sound(this, "src/main/assets/music/frogger-splash.wav");
-
-        froggerFlatSound = new Sound(this, "src/main/assets/music/carscreechstop.wav");
-        gameOverSound = new Sound(this, "src/main/assets/music/gameover.mp3");
-    }
+        froggerWIN = new Sound(this, "src/main/assets/sounds/yehaw.mp3");
+        froggerLoose = new Sound(this, "src/main/assets/sounds/gameover.mp3");    }
 
     /**
      * In deze methode worden de voor het spel noodzakelijke zaken geïnitialiseerd
@@ -62,6 +58,8 @@ public class Frogger extends GameEngine
 
     void EndGame()
     {
+        froggerLoose.rewind();
+        froggerLoose.play();
         menuManager.ShowGameOver(frog);
         deleteGameObject(frog);
         frog = null;

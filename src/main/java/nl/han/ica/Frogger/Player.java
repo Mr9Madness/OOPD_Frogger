@@ -3,6 +3,7 @@ package nl.han.ica.Frogger;
 import nl.han.ica.Frogger.Menus.GameMenu;
 import nl.han.ica.Frogger.Menus.MenuManager;
 import nl.han.ica.Frogger.Objects.RiverObjects.Tree;
+import nl.han.ica.Frogger.Objects.RoadObjects.RoadObjects;
 import nl.han.ica.Frogger.tiles.FinishTile;
 import nl.han.ica.Frogger.tiles.SafeFinishTile;
 import nl.han.ica.Frogger.tiles.WaterTile;
@@ -28,7 +29,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     private final GameMenu gameMenu;
     private int currentScore = 0;
     private boolean isOnSafeObject = false;
-    private Sound froggerJump;
+    private Sound froggerJump,froggerSplash,froggerCarScreech;
 
     private int lives = 5;
     private int countFrogsOnFinish = 0;
@@ -43,13 +44,15 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         this.engine = engine;
         this.gameMenu = ((GameMenu)menuManager.GetCurrentMenu());
 
-        froggerJump = new Sound(engine, "src/main/assets/music/frogger-hop.wav");
+        froggerJump = new Sound(engine, "src/main/assets/sounds/frogger-hop.wav");
+        froggerSplash = new Sound(engine, "src/main/assets/sounds/frogger-splash.wav");
+        froggerCarScreech = new Sound(engine, "src/main/assets/sounds/carsplat.mp3");
         setCurrentFrameIndex(0);
         setZ(25);
         setFriction(.5f);
     }
     private void onHit() {
-        if (!isOnSafeObject && false) {
+        if (!isOnSafeObject) {
             gameMenu.RemoveLive(lives);
             lives--;
             System.out.println("you have " + lives + " frogs now!");
@@ -91,41 +94,30 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     private void jump () {
         froggerJump.rewind();
         froggerJump.play();
-
         nextFrame();
     }
     @Override
     public void keyPressed(int keyCode, char key) {
-        System.out.println("Y: "+getY()+" / X:"+getX());
         final int speed = 50;
 
         if (keyCode == engine.LEFT)
         {
-  //          setDirectionSpeed(270, speed);
             setX(getX()-speed);
-
             jump();
         }
         else if (keyCode == engine.UP)
         {
-//            setDirectionSpeed(0, speed);
-            //setDirection(0);
             setY(getY()-speed);
             jump();
         }
         else if (keyCode == engine.RIGHT)
         {
-            //setDirectionSpeed(90, speed);
-            //setDirection(90);
             setX(getX()+speed);
             jump();
         }
         else if (keyCode == engine.DOWN)
         {
-            //setDirectionSpeed(180, speed);
-            //setDirection(180);
             setY(getY()+speed);
-
             jump();
         }
     }
@@ -137,8 +129,6 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 isOnSafeObject =true;
                 setCurrentFrameIndex(0);
 
-                //setX(getX()-50);
-                //setX(ct.getCenterX()-(getWidth()/2));
                 if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
                     System.out.println("Boomstam: "+(ct.getX()-getWidth())+" kikker: "+getWidth());
@@ -161,8 +151,13 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                     setY(getY()+50);
                     isOnSafeObject=false;
                 }
-                }
-            } else {
+            } if (ct instanceof RoadObjects) {
+                froggerCarScreech.rewind();
+                froggerCarScreech.play();
+                onHit();
+            }
+            else //alle andere objecten
+            {
                 isOnSafeObject =false;
                 onHit();
             }
@@ -189,6 +184,8 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             }
             else if( ct.theTile instanceof WaterTile)
             {
+                froggerSplash.rewind();
+                froggerSplash.play();
                 onHit();
             }
         }
