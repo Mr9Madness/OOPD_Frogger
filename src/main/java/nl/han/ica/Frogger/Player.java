@@ -183,11 +183,9 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 {
                     if (ct.getX() <= getX())
                         setX(getX()+ct.getxSpeed());
-
-                        System.out.println("Boomstam: "+(ct.getX())+" kikker: " + getX());
+                    else isOnSafeObject = false;
                 }
                 else if (getX()<=0 && getDirection()==270.0) {
-                    System.out.println("resetyctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
                     setY(getY()+50);
                     isOnSafeObject=false;
                 }
@@ -195,8 +193,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 {
                     if (ct.getX() + ct.getWidth() >= getX() + getWidth())
                         setX(getX()+ct.getxSpeed());
-
-                    System.out.println("rechtstyctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
+                    else isOnSafeObject = false;
                 }
                 else if ((getX()>=750) && (ct.getDirection()==90.0)) //right
                 {
