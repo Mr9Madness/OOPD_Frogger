@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="OOPG_Frogger:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/OOPG_Frogger_jar</output-path>
+    <root id="archive" name="OOPG_Frogger.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="OOPG_Frogger" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/processing/sound/tritonus_aos/1.9.4/tritonus_aos-1.9.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/processing/gifanimation/1.0/gifanimation-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/processing/sound/jsminim/1.0/jsminim-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/processing/core/2.2.1/core-2.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/processing/sound/1.0/sound-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/processing/sound/minim/1.0/minim-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/processing/sound/tritonus_share/1.0/tritonus_share-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/processing/sound/jl/1.0/jl-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/processing/sound/mp3spi/1.9.4/mp3spi-1.9.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

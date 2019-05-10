@@ -20,8 +20,8 @@ public class TileMap {
 
     /**
      * Create a new TileMap.
-     * @param tileSize The size the tiles will be.
-     * @param tileTypes The Array with factory's which will be creating the different types of tiles.
+     * @param tileSize The size the Tiles will be.
+     * @param tileTypes The Array with factory's which will be creating the different types of Tiles.
      * @param indexMap The Map consisting of tileType indexes which will be used to create and draw the Map.
      */
     public TileMap(int tileSize, TileType[] tileTypes, int[][] indexMap) {
@@ -32,23 +32,23 @@ public class TileMap {
 
     /**
      * Create a new TileMap.
-     * @param tileSize The size the tiles will be.
+     * @param tileSize The size the Tiles will be.
      */
     public TileMap(int tileSize) {
         this.tileSize = tileSize;
     }
 
     /**
-     * Gets the tile size of the tiles inside the TileMap.
-     * @return The size of the tiles in the Map.
+     * Gets the tile size of the Tiles inside the TileMap.
+     * @return The size of the Tiles in the Map.
      */
     public int getTileSize() {
         return tileSize;
     }
 
     /**
-     * Resize the tiles currently used in the map and sets the tileSize for new Tile.
-     * @param tileSize  The size the tiles will be.
+     * Resize the Tiles currently used in the map and sets the tileSize for new Tile.
+     * @param tileSize  The size the Tiles will be.
      */
     public void setTileSize(int tileSize) {
         this.tileSize = tileSize;
@@ -64,7 +64,7 @@ public class TileMap {
 
     /**
      * Gets the map width.
-     * @return The width in pixels of the first row of tiles in the map.
+     * @return The width in pixels of the first row of Tiles in the map.
      */
     public int getMapWidth() {
         return indexMap[0].length * tileSize;
@@ -72,14 +72,14 @@ public class TileMap {
 
     /**
      * Gets the map height.
-     * @return the Height in pixels of the first column of tiles in the Map
+     * @return the Height in pixels of the first column of Tiles in the Map
      */
     public int getMapHeight() {
         return indexMap.length * tileSize;
     }
 
     /**
-     * Sets the indexMap used to create the tiles.
+     * Sets the indexMap used to create the Tiles.
      * @param indexMap The two dimensional int array which contains the indexes of the tileTypes.
      */
     public void setTileMap(int[][] indexMap) {
@@ -124,8 +124,8 @@ public class TileMap {
     }
 
     /**
-     * The method the View calls to draw the tiles of the TileMap.
-     * @param pGraphics The canvas on which the tiles will be drawn.
+     * The method the View calls to draw the Tiles of the TileMap.
+     * @param pGraphics The canvas on which the Tiles will be drawn.
      */
     public void draw(PGraphics pGraphics) {
     	

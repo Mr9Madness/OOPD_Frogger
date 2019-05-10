@@ -4,7 +4,7 @@ import nl.han.ica.OOPD_Engine.Objects.Sprite;
 
 /**
  * The Tile Object is used to bind a Sprite to an location in a TileMap
- * Extend Tile to create different types of tiles.
+ * Extend Tile to create different types of Tiles.
  */
 public class Tile {
 

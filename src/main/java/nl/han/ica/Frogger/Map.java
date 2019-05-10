@@ -1,8 +1,7 @@
 package nl.han.ica.Frogger;
 
-import nl.han.ica.Frogger.sections.*;
-import nl.han.ica.Frogger.tiles.*;
-import nl.han.ica.OOPD_Engine.Engine.GameEngine;
+import nl.han.ica.Frogger.Sections.*;
+import nl.han.ica.Frogger.Tiles.*;
 import nl.han.ica.OOPD_Engine.Objects.Sprite;
 import nl.han.ica.OOPD_Engine.Tile.TileMap;
 import nl.han.ica.OOPD_Engine.Tile.TileType;
@@ -11,13 +10,13 @@ import processing.core.PVector;
 import java.util.ArrayList;
 
 /**
- * Map is the base class that creates the tilemap and sections
+ * Map is the base class that creates the tilemap and Sections
  */
 class Map {
     private ArrayList<Section> sectionList = new ArrayList<>();
 
     /**
-     * Construct the map, add the needed sections, set the size, pos and spawns entities
+     * Construct the map, add the needed Sections, set the size, pos and spawns entities
      * @param engine
      */
     Map(Frogger engine)

@@ -18,14 +18,14 @@ public class TileType <T extends Tile> {
 	protected Class<T> classType;
 	
     /**
-     * The image which will be drawn whenever the draw method of the created tiles is called.
+     * The image which will be drawn whenever the draw method of the created Tiles is called.
      */
 	protected Sprite sprite;
 
     /**
      * Create a new TileType object.
      * @param classType The type of class this factory will be creating instances of.
-     * @param sprite The image which will be drawn whenever the draw method of the created tiles is called.
+     * @param sprite The image which will be drawn whenever the draw method of the created Tiles is called.
      */
 	public TileType(Class<T> classType, Sprite sprite)
 	{

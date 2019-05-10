@@ -5,9 +5,9 @@ import nl.han.ica.Frogger.Menus.MenuManager;
 import nl.han.ica.Frogger.Objects.Ball;
 import nl.han.ica.Frogger.Objects.RiverObjects.Tree;
 import nl.han.ica.Frogger.Objects.RoadObjects.RoadObjects;
-import nl.han.ica.Frogger.tiles.FinishTile;
-import nl.han.ica.Frogger.tiles.SafeFinishTile;
-import nl.han.ica.Frogger.tiles.WaterTile;
+import nl.han.ica.Frogger.Tiles.FinishTile;
+import nl.han.ica.Frogger.Tiles.SafeFinishTile;
+import nl.han.ica.Frogger.Tiles.WaterTile;
 import nl.han.ica.OOPD_Engine.Collision.CollidedTile;
 import nl.han.ica.OOPD_Engine.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPD_Engine.Collision.ICollidableWithTiles;
@@ -149,16 +149,28 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
      * Zorgt ervoor dat als de kikker een object geraakt wordt er een object er een actie wordt gedaan.
      * Een actie is op de boom meedrijven
      * Of zorgen dat de kikker "af" is.
-     * @param collidedGameObjects
+     * @param collidedGameObjects Een collectie van objecten waarmee wordt gebotst
      */
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject ct : collidedGameObjects) {
             if (ct instanceof Tree) {
-                isOnSafeObject =true;
+                isOnSafeObject = true;
                 setCurrentFrameIndex(0);
 
-                if ((getX()>=0) && (ct.getDirection()==270.0)) //left
+                if (ct instanceof Ball)
+                {
+                    froggerBallSploing.rewind();
+                    froggerBallSploing.play();
+                    onHit();
+                }
+                else if (ct instanceof RoadObjects)
+                {
+                    froggerCarScreech.rewind();
+                    froggerCarScreech.play();
+                    onHit();
+                }
+                else if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
                     System.out.println("Boomstam: "+(ct.getX()-getWidth())+" kikker: "+getWidth());
                         setX(getX()+ct.getxSpeed());
@@ -178,18 +190,6 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                     setY(getY()+50);
                     isOnSafeObject=false;
                 }
-                else if (ct instanceof Ball)
-                {
-                    froggerBallSploing.rewind();
-                    froggerBallSploing.play();
-                    onHit();
-                }
-                else if (ct instanceof RoadObjects)
-                {
-                    froggerCarScreech.rewind();
-                    froggerCarScreech.play();
-                    onHit();
-                }
         }
 
             else //alle andere objecten
@@ -201,10 +201,10 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     }
 
     /**
-     * Draagt zorg voor de bosting van de tiles, waar dan ook weer acties ontstaan zoals
+     * Draagt zorg voor de bosting van de Tiles, waar dan ook weer acties ontstaan zoals
      * alleen in een inham bij de finish kan de kikker komem
      * bij de watertile isn de kikker af.
-     * @param collidedTiles Dit zijn alle tiles die botsen met de kikker
+     * @param collidedTiles Dit zijn alle Tiles die botsen met de kikker
      */
     @Override
     public void tileCollisionOccurred(List<CollidedTile> collidedTiles)  {
@@ -217,7 +217,6 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             }
             else if (ct.theTile instanceof SafeFinishTile)
             {
-                ((SafeFinishTile) ct.theTile).Finish();
                 countFrogsOnFinish++;
                 setY(10000);
                 // Actuele X en Y positie van de kikker pakken wanneer hij in de SafeFinishTile is, en in de huidige SafefinishTile een kikker neerzetten
