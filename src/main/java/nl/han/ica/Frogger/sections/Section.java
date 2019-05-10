@@ -4,6 +4,9 @@ import nl.han.ica.Frogger.Vector;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import processing.core.PVector;
 
+/**
+ * Section is the base class for section and contains the needed data for all sections
+ */
 public abstract class Section {
     protected PVector pos;
     protected PVector size;
@@ -74,14 +77,24 @@ public abstract class Section {
     public void setSize( PVector size) { this.size = size;}
 
     /**
-     *
-     * @return
+     * Gets the position of the section
+     * @return the position of the section
      */
     public PVector getPos() {
         return pos;
     }
+
+    /**
+     * Sets the position to the specified one
+     * @param pos the position it needs to be changed to
+     */
     public void setPos( PVector pos ) { this.pos = pos;}
 
+
+    /**
+     * Get the bounds of the Section based on the position and size
+     * @return the bounds of the current section
+     */
     public Vector<PVector> getBounds()
     {
         return new Vector<>( new PVector(pos.x - size.x, pos.x + size.x), new PVector(pos.y - size.y, pos.y + size.y) );

@@ -6,6 +6,9 @@ import nl.han.ica.Frogger.Objects.RoadObjects.FireCar;
 import nl.han.ica.Frogger.Objects.RoadObjects.Truck;
 import processing.core.PVector;
 
+/**
+ * Road section is the section where road obstacles spawn and move in
+ */
 public class RoadSection extends Section {
     private final Frogger engine;
     private int[][] tileSection = {
@@ -13,7 +16,10 @@ public class RoadSection extends Section {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
     };
-
+    /**
+     * Create a Road section and append it to the tilemap
+     * @param engine Engine reference to update the tilemap
+     */
     public RoadSection(Frogger engine)
     {
         super(engine, true);
@@ -21,6 +27,9 @@ public class RoadSection extends Section {
         engine.getTileMap().setTileMap( super.appendTileMap(tileSection) );
     }
 
+    /**
+     * Implementation of spawnEntity that spawn obstacles when needed
+     */
     @Override
     public void spawnEntity()
     {
@@ -40,6 +49,9 @@ public class RoadSection extends Section {
         engine.addGameObject(new Truck(engine,270,1),720,450); //LEFT
     }
 
+    /**
+     * Automatically sets this sections own size
+     */
     @Override
     public void setSize() { this.size = new PVector(tileSection[0].length * 50, (tileSection.length + 1) * 50);}
 }

@@ -4,6 +4,9 @@ import nl.han.ica.Frogger.Objects.Ball;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import processing.core.PVector;
 
+/**
+ * Ball section is the section where balls spawn and bounce in
+ */
 public class BallSection extends Section {
     private int[][] tileSection = {
             {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2},
@@ -11,6 +14,10 @@ public class BallSection extends Section {
             {2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2}
     };
 
+    /**
+     * Create a ball section and append it to the tilemap
+     * @param engine Engine reference to update the tilemap
+     */
     public BallSection(GameEngine engine)
     {
         super(engine, true);
@@ -18,6 +25,9 @@ public class BallSection extends Section {
         engine.getTileMap().setTileMap( super.appendTileMap(tileSection) );
     }
 
+    /**
+     * Implementation of spawnEntity that spawn obstacles when needed
+     */
     @Override
     public void spawnEntity() {
         float[] bounds = new float[2];
@@ -28,6 +38,9 @@ public class BallSection extends Section {
         engine.addGameObject(new Ball(engine,300,4, bounds), engine.getView().getWorldWidth(),50);
     }
 
+    /**
+     * Automatically sets this sections own size
+     */
     @Override
     public void setSize() { this.size = new PVector(tileSection[0].length * 50, (tileSection.length + 1) * 50 );}
 }

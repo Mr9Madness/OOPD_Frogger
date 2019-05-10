@@ -31,6 +31,13 @@ public class GameMenu extends Dashboard {
         AddGameObject( "Score", scoreText, 25, 50 );
     }
 
+    /**
+     * Add an gameobject to the object hashmap with the specified string key and spawn it with the specified coordinates
+     * @param key String key that makes getting the object easier
+     * @param object the object needed to be displayed on the menu
+     * @param x x position of the menu object
+     * @param y y position of the menu object
+     */
     private void AddGameObject( String key, GameObject object, int x, int y )
     {
         menuObjects.put( key, object );

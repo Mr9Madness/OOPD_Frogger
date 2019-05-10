@@ -14,7 +14,6 @@ public class RiverObjects extends Objects {
      *
      * @param engine The engine used, needed to determine the worldsize
      * @param sprite The sprite that is used for the object
-     * @param totalFrames The number of frames the object has
      * @param direction The direction the object is traveling
      * @param speed The speed the object is traveling
      **/

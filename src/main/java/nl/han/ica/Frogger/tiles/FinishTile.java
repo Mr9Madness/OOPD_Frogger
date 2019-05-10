@@ -8,9 +8,4 @@ public class FinishTile extends Tile
     public FinishTile(Sprite sprite) {
         super(sprite);
     }
-
-    public void Finish()
-    {
-
-    }
 }

@@ -4,6 +4,9 @@ import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.OOPD_Engine.Objects.GameObject;
 import processing.core.PGraphics;
 
+/**
+ * A button that can be clicked and executes a method
+ */
 public class uiButton extends GameObject {
 
     private int r, g, b, alpha = 255;

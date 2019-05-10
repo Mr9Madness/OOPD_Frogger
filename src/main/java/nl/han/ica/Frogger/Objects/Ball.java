@@ -22,17 +22,17 @@ public class Ball extends Objects {
         setDirectionSpeed(direction, speed);
     }
 
+    /**
+     * Update loop that checks if the object in out of the top and bottom bound
+     */
     @Override
     public void update()
     {
+        super.update();
+
         if (getY() <= bounds[0] ) { //left
             setDirection( 240 );
         } else if( getY() >= bounds[1] )
             setDirection( 300 );
-
-        if ((getX() + getWidth()) >= engine.width+getWidth()) // RIGHT
-            setX(0-getWidth());
-        if ((getX() + getWidth()) <= 0-getWidth()) // LEFT
-            setX(engine.width);
     }
 }

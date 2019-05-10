@@ -4,7 +4,7 @@ import nl.han.ica.OOPD_Engine.Objects.GameObject;
 import processing.core.PGraphics;
 
 /**
- * Use this class to draw a background.
+ * A generic class that draws a background.
  */
 public class uiObject extends GameObject {
 

@@ -50,7 +50,10 @@ public class Frogger extends GameEngine
         map = new Map(this);
     }
 
-    public void FinishGame()
+    /**
+     * Changes the game state to finished and remove the player. This is executed when the player has won the game
+     */
+    void FinishGame()
     {
         backgroundSound.pause();
         froggerWIN.rewind();
@@ -62,6 +65,9 @@ public class Frogger extends GameEngine
 
     }
 
+    /**
+     * Changes the game state to started and respawns the player. This is executed when the player clicks restart
+     */
     public void RestartGame()
     {
         backgroundSound.play();
@@ -73,12 +79,15 @@ public class Frogger extends GameEngine
         getView().setViewport(viewPort);
     }
 
+    /**
+     * Changes the game state to finished and removes the player. This is executed when the player runs out of lives
+     */
     void EndGame()
     {
         backgroundSound.pause();
         froggerLoose.rewind();
         froggerLoose.play();
-        menuManager.ShowGameOver(frog);
+        menuManager.ShowGameOver();
         deleteGameObject(frog);
         frog = null;
     }
@@ -98,14 +107,18 @@ public class Frogger extends GameEngine
         size(screenWidth, screenHeight);
     }
 
-    /** Maakt de spelobjecten aan */
+    /**
+     * Maakt de spelobjecten aan
+     */
     private void createObjects(int worldWidth, int worldHeight)
     {
         frog = new Player(this, menuManager);
         addGameObject(frog, worldWidth / 2, worldHeight);
     }
 
+    /**
+     * Needed implementation that isn't used
+     */
     @Override
-    public void update() {
-    }
+    public void update() {}
 }

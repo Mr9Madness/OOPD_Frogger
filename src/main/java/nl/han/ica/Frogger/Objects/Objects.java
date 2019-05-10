@@ -26,14 +26,9 @@ public class Objects extends SpriteObject {
      */
     @Override
     public void update() {
-        if (getDirection() == 90 && (getX() + getWidth()) >= engine.width+getWidth()) // RIGHT
+        if ((getX() + getWidth()) >= engine.width+getWidth()) // RIGHT
             setX(0-getWidth());
-        if (getDirection() == 270 && (getX() + getWidth()) <= 0-getWidth()) // LEFT
+        if ((getX() + getWidth()) <= 0-getWidth()) // LEFT
             setX(engine.width);
-    }
-
-    @Override
-    public void move() {
-        super.move();
     }
 }

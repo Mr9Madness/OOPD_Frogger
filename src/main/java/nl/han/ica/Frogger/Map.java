@@ -10,10 +10,17 @@ import processing.core.PVector;
 
 import java.util.ArrayList;
 
-public class Map {
+/**
+ * Map is the base class that creates the tilemap and sections
+ */
+class Map {
     private ArrayList<Section> sectionList = new ArrayList<>();
 
-    public Map(Frogger engine)
+    /**
+     * Construct the map, add the needed sections, set the size, pos and spawns entities
+     * @param engine
+     */
+    Map(Frogger engine)
     {
         engine.setTileMap( initTileMap() );
 
@@ -35,12 +42,18 @@ public class Map {
         engine.getView().setWorldSize(engine.getWidth(), engine.getTileMap().getMapHeight());
     }
 
-    public void AddSection( Section section )
+    /**
+     * Adds the section to the sectionlist ArrayList
+     * @param section the section that needs to be added
+     */
+    private void AddSection( Section section )
     {
         sectionList.add( section );
     }
 
-    /** Initialiseert de tilemap */
+    /**
+     * Initialiseert de tilemap
+     */
     private TileMap initTileMap()
     {
         TileType[] tileType = {
