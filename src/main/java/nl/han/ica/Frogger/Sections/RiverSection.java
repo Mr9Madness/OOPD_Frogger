@@ -38,9 +38,9 @@ public class RiverSection extends Section {
         engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 600, 350); //LEFT
         engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 900, 350); //LEFT
 
-        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 60, 300); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 600, 300); //LEFT
-        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 900, 300); //LEFT
+        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 60, 300); //RIGHT
+        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 350, 300); //RIGHT
+        engine.addGameObject(new Tree(engine, TreeSize.Medium, 90, 1), 900, 300); //RIGHT
 
         engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 60, 250); //LEFT
         engine.addGameObject(new Tree(engine, TreeSize.Small, 270, 1), 600, 250); //LEFT

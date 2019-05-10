@@ -111,7 +111,10 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     private void jump () {
         froggerJump.rewind();
         froggerJump.play();
-        nextFrame();
+        if (getCurrentFrameIndex()==0) //The frog is getting too wide with all the frames
+            setCurrentFrameIndex(1);
+        else
+            setCurrentFrameIndex(0);
     }
 
     /**
