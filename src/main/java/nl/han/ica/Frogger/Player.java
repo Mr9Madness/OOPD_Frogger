@@ -60,12 +60,11 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
      * Deze functie regelt dat als de kikker iets raakt er een kikker wordt afgetrokken en de huidige kikker weer beneden in het scherm komt te staan
      */
     private void onHit() {
-        if (!isOnSafeObject) {
+        if (!isOnSafeObject && !isHit) {
             gameMenu.RemoveLive(lives);
             lives--;
             System.out.println("you have " + lives + " frogs now!");
             if (lives != 0) setY(100000);
-            isHit = false;
         }
     }
 
@@ -82,6 +81,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     public void update()
     {
         isOnSafeObject=false;
+        isHit = false;
 
         if (getX() <= 0)
         {
@@ -236,6 +236,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 froggerSplash.rewind();
                 froggerSplash.play();
                 onHit();
+                isHit = true;
             }
         }
     }
