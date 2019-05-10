@@ -154,23 +154,27 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject ct : collidedGameObjects) {
-            if (ct instanceof Tree) {
+            if (ct instanceof Ball)
+            {
+                isOnSafeObject = false;
+
+                froggerBallSploing.rewind();
+                froggerBallSploing.play();
+                onHit();
+            }
+            else if (ct instanceof RoadObjects)
+            {
+                isOnSafeObject = false;
+
+                froggerCarScreech.rewind();
+                froggerCarScreech.play();
+                onHit();
+            }
+            else if (ct instanceof Tree) {
                 isOnSafeObject = true;
                 setCurrentFrameIndex(0);
 
-                if (ct instanceof Ball)
-                {
-                    froggerBallSploing.rewind();
-                    froggerBallSploing.play();
-                    onHit();
-                }
-                else if (ct instanceof RoadObjects)
-                {
-                    froggerCarScreech.rewind();
-                    froggerCarScreech.play();
-                    onHit();
-                }
-                else if ((getX()>=0) && (ct.getDirection()==270.0)) //left
+                if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
                     System.out.println("Boomstam: "+(ct.getX()-getWidth())+" kikker: "+getWidth());
                         setX(getX()+ct.getxSpeed());
@@ -190,11 +194,10 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                     setY(getY()+50);
                     isOnSafeObject=false;
                 }
-        }
-
+            }
             else //alle andere objecten
             {
-                isOnSafeObject =false;
+                isOnSafeObject = false;
                 onHit();
             }
         }
