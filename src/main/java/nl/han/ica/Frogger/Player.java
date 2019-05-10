@@ -181,7 +181,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
                 if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
-                    if (ct.getX() <= getX())
+                    if (ct.getX() <= getX() + getWidth() / 2 && ct.getX() + ct.getWidth() >= getX() + getWidth() / 2)
                         setX(getX()+ct.getxSpeed());
                     else isOnSafeObject = false;
                 }
@@ -191,7 +191,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 }
                 else if ((getX()<=750) && (ct.getDirection()==90.0)) //right
                 {
-                    if (ct.getX() + ct.getWidth() >= getX() + getWidth())
+                    if (ct.getX() <= getX() + getWidth() / 2 && ct.getX() + ct.getWidth() >= getX() + getWidth() / 2)
                         setX(getX()+ct.getxSpeed());
                     else isOnSafeObject = false;
                 }
@@ -231,9 +231,8 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 // Actuele X en Y positie van de kikker pakken wanneer hij in de SafeFinishTile is, en in de huidige SafefinishTile een kikker neerzetten
                 // Vervolgens de positie van de huidige kikker weer terugzetten naar 0
             }
-            else if( ct.theTile instanceof WaterTile && !isOnSafeObject && !isHit)
+            else if( ct.theTile instanceof WaterTile && !isOnSafeObject)
             {
-                isHit = true;
                 froggerSplash.rewind();
                 froggerSplash.play();
                 onHit();
