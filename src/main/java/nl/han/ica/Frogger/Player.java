@@ -69,7 +69,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
     /**
      * Player score wordt hier opgevraagd
-     * @return
+     * @return playerscore wordt hier teruggegeven
      */
     public int GetPlayerScore() { return currentScore; }
 
