@@ -29,6 +29,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     private final GameMenu gameMenu;
     private int currentScore = 0;
     private boolean isOnSafeObject = false;
+    private boolean isHit = false;
     private Sound froggerJump,froggerSplash,froggerCarScreech,froggerBallSploing;
 
     private int lives = 5;
@@ -64,6 +65,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
             lives--;
             System.out.println("you have " + lives + " frogs now!");
             if (lives != 0) setY(100000);
+            isHit = false;
         }
     }
 
@@ -179,8 +181,10 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
                 if ((getX()>=0) && (ct.getDirection()==270.0)) //left
                 {
-                    System.out.println("Boomstam: "+(ct.getX()-getWidth())+" kikker: "+getWidth());
+                    if (ct.getX() <= getX())
                         setX(getX()+ct.getxSpeed());
+
+                        System.out.println("Boomstam: "+(ct.getX())+" kikker: " + getX());
                 }
                 else if (getX()<=0 && getDirection()==270.0) {
                     System.out.println("resetyctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
@@ -189,8 +193,10 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 }
                 else if ((getX()<=750) && (ct.getDirection()==90.0)) //right
                 {
+                    if (ct.getX() + ct.getWidth() >= getX() + getWidth())
+                        setX(getX()+ct.getxSpeed());
+
                     System.out.println("rechtstyctgetwidth"+ct.getX()+" / ctwidth: "+ct.getWidth()+"/ ctgetx"+ct.getX()+ct.getWidth());
-                    setX(getX()+ct.getxSpeed());
                 }
                 else if ((getX()>=750) && (ct.getDirection()==90.0)) //right
                 {
@@ -228,8 +234,9 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
                 // Actuele X en Y positie van de kikker pakken wanneer hij in de SafeFinishTile is, en in de huidige SafefinishTile een kikker neerzetten
                 // Vervolgens de positie van de huidige kikker weer terugzetten naar 0
             }
-            else if( ct.theTile instanceof WaterTile && !isOnSafeObject)
+            else if( ct.theTile instanceof WaterTile && !isOnSafeObject && !isHit)
             {
+                isHit = true;
                 froggerSplash.rewind();
                 froggerSplash.play();
                 onHit();
