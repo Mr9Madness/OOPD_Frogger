@@ -4,7 +4,6 @@ import nl.han.ica.Frogger.Frogger;
 import nl.han.ica.Frogger.Menus.Objects.uiButton;
 import nl.han.ica.Frogger.Menus.Objects.uiObject;
 import nl.han.ica.Frogger.Menus.Objects.uiSpriteObject;
-import nl.han.ica.Frogger.Player;
 import nl.han.ica.OOPD_Engine.Dashboard.Dashboard;
 import nl.han.ica.OOPD_Engine.Engine.GameEngine;
 import nl.han.ica.OOPD_Engine.Objects.GameObject;
@@ -27,7 +26,7 @@ public class GameOverMenu extends Dashboard {
      * @param worldWidth with of the entire world
      * @param worldHeight height of the entire world
      */
-    public GameOverMenu(GameEngine engine, float worldWidth, float worldHeight)
+    GameOverMenu(GameEngine engine, float worldWidth, float worldHeight)
     {
         super(0, 0, worldWidth, worldHeight);
         this.engine = engine;
