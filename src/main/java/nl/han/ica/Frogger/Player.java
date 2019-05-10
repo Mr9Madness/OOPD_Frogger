@@ -106,6 +106,9 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         gameMenu.UpdateScore(currentScore);
     }
 
+    /**
+     * Zorgt voor het afspelen van het jump geluidje en laad het volgende frame
+     */
     private void jump() {
         froggerJump.rewind();
         froggerJump.play();
