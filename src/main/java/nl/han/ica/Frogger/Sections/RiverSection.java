@@ -32,8 +32,6 @@ public class RiverSection extends Section {
      */
     @Override
     public void spawnEntity() {
-        System.out.println("River Direction " + pos + " / " + size + " / engine:" + engine.height + " / view:" + engine.getView().getWorldHeight());
-
         engine.addGameObject(new Tree(engine, TreeSize.Big,270, 1), 60, 350); //LEFT
         engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 600, 350); //LEFT
         engine.addGameObject(new Tree(engine, TreeSize.Big, 270, 1), 900, 350); //LEFT

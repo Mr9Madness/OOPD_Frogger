@@ -21,8 +21,7 @@ import java.util.List;
 /**
  * Player class
  */
-public class Player extends AnimatedSpriteObject implements ICollidableWithTiles, ICollidableWithGameObjects
-{
+public class Player extends AnimatedSpriteObject implements ICollidableWithTiles, ICollidableWithGameObjects {
 
     private final int size = 50;
     private final Frogger engine;
@@ -30,7 +29,7 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     private int currentScore = 0;
     private boolean isOnSafeObject = false;
     private boolean isHit = false;
-    private Sound froggerJump,froggerSplash,froggerCarScreech,froggerBallSploing;
+    private Sound froggerJump, froggerSplash, froggerCarScreech, froggerBallSploing;
 
     private int lives = 5;
     private int countFrogsOnFinish = 0;
@@ -39,18 +38,18 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
     /**
      * Constructor waar de kikker afbeelding wordt meegegeven
+     *
      * @param engine Referentie naar de wereld
      */
-    public Player(Frogger engine, MenuManager menuManager)
-    {
+    Player(Frogger engine, MenuManager menuManager) {
         super(new Sprite("src/main/assets/sprites/Frogger.png"), 7);
         this.engine = engine;
-        this.gameMenu = ((GameMenu)menuManager.GetCurrentMenu());
+        this.gameMenu = ((GameMenu) menuManager.GetCurrentMenu());
 
         froggerJump = new Sound(engine, "src/main/assets/sounds/frogger-hop.wav");
         froggerSplash = new Sound(engine, "src/main/assets/sounds/frogger-splash.wav");
         froggerCarScreech = new Sound(engine, "src/main/assets/sounds/carsplat.mp3");
-        froggerBallSploing= new Sound(engine, "src/main/assets/sounds/frogger-boing.wav");
+        froggerBallSploing = new Sound(engine, "src/main/assets/sounds/frogger-boing.wav");
         setCurrentFrameIndex(0);
         setZ(25);
         setFriction(.5f);
@@ -63,57 +62,54 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
         if (!isOnSafeObject && !isHit) {
             gameMenu.RemoveLive(lives);
             lives--;
-            System.out.println("you have " + lives + " frogs now!");
             if (lives != 0) setY(100000);
         }
     }
 
     /**
      * Player score wordt hier opgevraagd
+     *
      * @return playerscore wordt hier teruggegeven
      */
-    public int GetPlayerScore() { return currentScore; }
+    public int GetPlayerScore() {
+        return currentScore;
+    }
 
     /**
-     * Deze methode zorgt ervoor dat de
+     * Deze methode zorgt ervoor dat de player niet de map af kan en de levens en score wordt geupdated
      */
     @Override
-    public void update()
-    {
-        isOnSafeObject=false;
+    public void update() {
+        isOnSafeObject = false;
         isHit = false;
 
-        if (getX() <= 0)
-        {
+        if (getX() <= 0) {
             setxSpeed(0);
             setX(0);
         }
-        if (getY() <= 0)
-        {
+        if (getY() <= 0) {
             setySpeed(0);
             setY(0);
         }
-        if (getX() >= engine.getWidth() - size)
-        {
+        if (getX() >= engine.getWidth() - size) {
             setxSpeed(0);
             setX(engine.getWidth() - size);
         }
-        if (getY() >= engine.getView().getWorldHeight() - size)
-        {
+        if (getY() >= engine.getView().getWorldHeight() - size) {
             setySpeed(0);
             setY(engine.getView().getWorldHeight() - size);
         }
-        currentScore = (int)(System.currentTimeMillis() - startTime) / 1000;
+        currentScore = (int) (System.currentTimeMillis() - startTime) / 1000;
 
-        if( countFrogsOnFinish >= neededFrogsOnFinish ) engine.FinishGame();
-        if( lives <= 0 ) engine.EndGame();
-        gameMenu.UpdateScore( currentScore );
+        if (countFrogsOnFinish >= neededFrogsOnFinish) engine.FinishGame();
+        if (lives <= 0) engine.EndGame();
+        gameMenu.UpdateScore(currentScore);
     }
 
-    private void jump () {
+    private void jump() {
         froggerJump.rewind();
         froggerJump.play();
-        if (getCurrentFrameIndex()==0) //The frog is getting too wide with all the frames
+        if (getCurrentFrameIndex() == 0) //The frog is getting too wide with all the frames
             setCurrentFrameIndex(1);
         else
             setCurrentFrameIndex(0);
@@ -121,31 +117,25 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
 
     /**
      * Als er op de plijtjestoetsen wordt gedrukt, zal deze methode ervoor zorgen dat de kikker een andere positie krijgt toegewezen
+     *
      * @param keyCode Vraagt de toetscode op
-     * @param key vraagt de toets op
+     * @param key     vraagt de toets op
      */
     @Override
     public void keyPressed(int keyCode, char key) {
         final int speed = 50;
 
-        if (keyCode == engine.LEFT)
-        {
-            setX(getX()-speed);
+        if (keyCode == engine.LEFT) {
+            setX(getX() - speed);
             jump();
-        }
-        else if (keyCode == engine.UP)
-        {
-            setY(getY()-speed);
+        } else if (keyCode == engine.UP) {
+            setY(getY() - speed);
             jump();
-        }
-        else if (keyCode == engine.RIGHT)
-        {
-            setX(getX()+speed);
+        } else if (keyCode == engine.RIGHT) {
+            setX(getX() + speed);
             jump();
-        }
-        else if (keyCode == engine.DOWN)
-        {
-            setY(getY()+speed);
+        } else if (keyCode == engine.DOWN) {
+            setY(getY() + speed);
             jump();
         }
     }
@@ -159,49 +149,41 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
         for (GameObject ct : collidedGameObjects) {
-            if (ct instanceof Ball)
-            {
+            if (ct instanceof Ball) {
                 isOnSafeObject = false;
 
                 froggerBallSploing.rewind();
                 froggerBallSploing.play();
                 onHit();
-            }
-            else if (ct instanceof RoadObjects)
-            {
+            } else if (ct instanceof RoadObjects) {
                 isOnSafeObject = false;
 
                 froggerCarScreech.rewind();
                 froggerCarScreech.play();
                 onHit();
-            }
-            else if (ct instanceof Tree) {
+            } else if (ct instanceof Tree) {
                 isOnSafeObject = true;
                 setCurrentFrameIndex(0);
 
-                if ((getX()>=0) && (ct.getDirection()==270.0)) //left
+                if ((getX() >= 0) && (ct.getDirection() == 270.0)) //left
                 {
                     if (ct.getX() <= getX() + getWidth() / 2 && ct.getX() + ct.getWidth() >= getX() + getWidth() / 2)
-                        setX(getX()+ct.getxSpeed());
+                        setX(getX() + ct.getxSpeed());
                     else isOnSafeObject = false;
-                }
-                else if (getX()<=0 && getDirection()==270.0) {
-                    setY(getY()+50);
-                    isOnSafeObject=false;
-                }
-                else if ((getX()<=750) && (ct.getDirection()==90.0)) //right
+                } else if (getX() <= 0 && getDirection() == 270.0) {
+                    setY(getY() + 50);
+                    isOnSafeObject = false;
+                } else if ((getX() <= 750) && (ct.getDirection() == 90.0)) //right
                 {
                     if (ct.getX() <= getX() + getWidth() / 2 && ct.getX() + ct.getWidth() >= getX() + getWidth() / 2)
-                        setX(getX()+ct.getxSpeed());
+                        setX(getX() + ct.getxSpeed());
                     else isOnSafeObject = false;
-                }
-                else if ((getX()>=750) && (ct.getDirection()==90.0)) //right
+                } else if ((getX() >= 750) && (ct.getDirection() == 90.0)) //right
                 {
-                    setY(getY()+50);
-                    isOnSafeObject=false;
+                    setY(getY() + 50);
+                    isOnSafeObject = false;
                 }
-            }
-            else //alle andere objecten
+            } else //alle andere objecten
             {
                 isOnSafeObject = false;
                 onHit();
@@ -213,26 +195,21 @@ public class Player extends AnimatedSpriteObject implements ICollidableWithTiles
      * Draagt zorg voor de bosting van de Tiles, waar dan ook weer acties ontstaan zoals
      * alleen in een inham bij de finish kan de kikker komem
      * bij de watertile isn de kikker af.
+     *
      * @param collidedTiles Dit zijn alle Tiles die botsen met de kikker
      */
     @Override
-    public void tileCollisionOccurred(List<CollidedTile> collidedTiles)  {
+    public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
 
-        for (CollidedTile ct : collidedTiles)
-        {
-            if (ct.theTile instanceof FinishTile)
-            {
-                setY(Y+50);
-            }
-            else if (ct.theTile instanceof SafeFinishTile)
-            {
+        for (CollidedTile ct : collidedTiles) {
+            if (ct.theTile instanceof FinishTile) {
+                setY(Y + 50);
+            } else if (ct.theTile instanceof SafeFinishTile) {
                 countFrogsOnFinish++;
                 setY(10000);
                 // Actuele X en Y positie van de kikker pakken wanneer hij in de SafeFinishTile is, en in de huidige SafefinishTile een kikker neerzetten
                 // Vervolgens de positie van de huidige kikker weer terugzetten naar 0
-            }
-            else if( ct.theTile instanceof WaterTile && !isOnSafeObject)
-            {
+            } else if (ct.theTile instanceof WaterTile && !isOnSafeObject) {
                 froggerSplash.rewind();
                 froggerSplash.play();
                 onHit();

@@ -17,13 +17,13 @@ class Map {
 
     /**
      * Construct the map, add the needed Sections, set the size, pos and spawns entities
-     * @param engine
+     * @param engine Engine reference for updating the timemap
      */
     Map(Frogger engine)
     {
         engine.setTileMap( initTileMap() );
 
-        AddSection(new RoadSection(engine ));
+        AddSection(new RoadSection(engine));
         AddSection(new RiverSection(engine));
         AddSection(new BallSection(engine));
         AddSection(new FinishSection(engine));

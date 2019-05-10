@@ -11,9 +11,8 @@ import processing.core.PApplet;
 public class Frogger extends GameEngine
 {
     private Player frog;
-    private Map map;
     private MenuManager menuManager;
-    private Sound backgroundSound,froggerWIN, froggerLoose;
+    private Sound backgroundSound, froggerWIN, froggerLoose;
 
     private int worldWidth = 900;
     private int worldHeight = 1200;
@@ -42,12 +41,12 @@ public class Frogger extends GameEngine
     {
         initializeSound();
 
-        menuManager = new MenuManager(this, screenWidth, screenHeight, true); // TODO: Verander ingame naar false zodra het main menu menu bestaat
+        menuManager = new MenuManager(this, screenWidth, screenHeight, true);
         createObjects(screenWidth, screenHeight);
 
         initView(screenWidth, screenHeight, worldWidth, worldHeight);
 
-        map = new Map(this);
+        new Map(this);
     }
 
     /**

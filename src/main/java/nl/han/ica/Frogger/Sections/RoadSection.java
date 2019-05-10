@@ -33,8 +33,6 @@ public class RoadSection extends Section {
     @Override
     public void spawnEntity()
     {
-        System.out.println("Direction " + pos + " / " + size+ " / engine:"+engine.height+" / view:"+engine.getView().getWorldHeight());
-
         engine.addGameObject(new Car(engine,270,1),60,550); //LEFT
         engine.addGameObject(new Car(engine,270,1),200,550); //LEFT
         engine.addGameObject(new Car(engine,270,1),534,550); //LEFT
